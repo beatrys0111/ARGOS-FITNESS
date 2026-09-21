@@ -429,7 +429,7 @@ O documento completo está disponível no repositório:
 > A documentação detalhada do Dicionário de Dados apresenta os atributos, tipos físicos, PKs, FKs e índices de cada entidade.
 
 ---
-
+//EDITAR//
 # 6. Modelagem Conceitual
 
 ## Entidades reconhecidas
