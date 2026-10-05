@@ -95,6 +95,10 @@ Telefone: (11) 2074-0145
 
 [Localização da ARGOS FITNESS no Google Maps](https://maps.app.goo.gl/atC6Nw4yhaU8ndBn6)
 
+
+<img width="828" height="597" alt="argos fitness" src="https://github.com/user-attachments/assets/1f791bd1-b772-4365-92e2-6c0437b1d771" />
+
+
 ---
 
 # 2. Processos de Negócio
