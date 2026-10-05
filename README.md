@@ -175,7 +175,7 @@ Durante a análise da **ARGOS FITNESS**, foram identificadas restrições organi
  
 ## 5. Dicionário de Dados Conceitual (Preliminar)
  
-Dicionário construído a partir do DER (Seção 7) e do documento complementar de Dicionário de Dados do sistema, que traz os tipos físicos (MySQL 8) e os índices. A obrigatoriedade indicada abaixo é uma **proposta**, pois o DER não explicita nulabilidade, e deve ser validada antes da implementação.
+Dicionário construído a partir do DER (Seção 7) e do [documento complementar de Dicionário de Dados do sistema](01-Dicionario-de-Dados/README.md), que traz os tipos físicos (MySQL 8) e os índices. A obrigatoriedade indicada abaixo é uma **proposta**, pois o DER não explicita nulabilidade, e deve ser validada antes da implementação.
  
 **Prefixos utilizados:** `nm_` = nome; `dt_` = data; `id_` = identificador; `cd_` = código; `qt_` = quantidade; `tp_` = tipo/categorização; `ds_` = descrição/texto livre; `vr_` = valor numérico/monetário.
  
@@ -370,14 +370,15 @@ Cardinalidades na notação (mínima, máxima) do BRModelo, lidas conforme apare
  
 ## 7. Diagrama Entidade-Relacionamento (DER)
  
-O DER está disponível na pasta docs/DER deste repositório (arquivo DER-ARGOS-FITNESS.jpg e página README.md).
-
+O DER está disponível na pasta **`docs/DER`** deste repositório (arquivo `DER-ARGOS-FITNESS.jpg` e página `README.md`).
+ 
 O DER foi elaborado no BRModelo Web, com notação (mínima, máxima) para as cardinalidades. Ele representa:
-
-Entidades: Pessoa, Aluno, Instrutor, Fornecedor, Plano, Matrícula, Pagamento, Acesso, Treino, Exercício, Avaliação Física, Equipamento e Manutenção;
-Atributos de cada entidade, com os identificadores marcados como (PK);
-Relacionamentos com suas cardinalidades, detalhados na Seção 6;
-Generalização/especialização de Pessoa em Aluno, Instrutor e Fornecedor.
+ 
+- **Entidades:** Pessoa, Aluno, Instrutor, Fornecedor, Plano, Matrícula, Pagamento, Acesso, Treino, Exercício, Avaliação Física, Equipamento e Manutenção;
+- **Atributos** de cada entidade, com os identificadores marcados como (PK);
+- **Relacionamentos** com suas cardinalidades, detalhados na Seção 6;
+- **Generalização/especialização** de Pessoa em Aluno, Instrutor e Fornecedor.
+---
  
 ## 8. Justificativa Técnica
  
@@ -437,15 +438,15 @@ As decisões de abstração e modelagem buscam equilibrar **representatividade, 
  
 ## 9. Uso de Inteligência Artificial
  
-> 🚧 **A preencher pelo grupo.** Se alguma ferramenta de IA foi usada em qualquer etapa (pesquisa, escrita, organização de ideias ou revisão), registre cada uso relevante na tabela abaixo. Se nenhuma foi usada, declare isso explicitamente aqui.
+O grupo utilizou ferramentas de IA como apoio em algumas etapas do trabalho. O registro de cada uso está abaixo.
  
 | Item | Registro |
 | :--- | :--- |
-| **Ferramenta e etapa** | |
-| **Motivação** | |
-| **Prompt(s) utilizados** | |
-| **Resposta recebida** | |
-| **Fontes consultadas e verificadas** | |
-| **Trechos rejeitados ou corrigidos** | |
-| **Justificativa da escolha final** | |
-| **Reflexão crítica** | |
+| **Ferramenta e etapa** | **Dicionário de Dados:** ChatGPT e Gemini.<br>**DER (Diagrama Entidade-Relacionamento):** ChatGPT.<br>**Regras de Negócio:** ChatGPT.<br>**Caracterização da Organização:** ChatGPT. |
+| **Motivação** | **Dicionário de Dados:** o ChatGPT e o Gemini foram utilizados como ferramenta de apoio na estruturação e padronização inicial do Dicionário de Dados, visando facilitar a organização e o alinhamento com as entidades do DER.<br>**DER:** o ChatGPT foi consultado para compreender melhor as diferenças de representação e aplicação de cardinalidades entre a modelagem conceitual teórica do documento e o padrão da ferramenta BRModelo.<br>**Regras de Negócio:** o ChatGPT foi utilizado para ajudar a identificar e redigir de forma clara as regras operacionais com base nos processos de uma academia de pequeno porte.<br>**Caracterização da Organização:** auxílio na estruturação e revisão do texto descritivo sobre o porte, funcionamento e contexto da Argos Fitness a partir das anotações da pesquisa de campo. |
+| **Prompt(s) utilizados** | **Dicionário de Dados:** "Como estruturar o dicionário de dados em formato de tabela para um sistema de academia contendo entidades como Aluno, Plano, Pagamento e Equipamento?"<br>**DER:** "Qual a diferença de notação de cardinalidade 1 para N e N para N entre o DER conceitual padrão e ferramentas práticas de modelagem?"<br>**Regras de Negócio:** "Quais são as regras de negócio essenciais para o controle de matrículas, pagamentos e manutenção de equipamentos em uma academia?" |
+| **Resposta recebida** | **Dicionário de Dados:** a IA respondeu sugerindo o uso de tabelas padronizadas contendo as colunas Atributo, Descrição e Regra de negócio associada, exemplificando com chaves primárias (ID_ALUNO) e chaves estrangeiras (ID_PLANO), além de recomendar o uso de prefixos como NM_ para nomes e DT_ para datas.<br>**DER:** a IA explicou que a cardinalidade 1:N significa que um registro de uma entidade se liga a vários de outra (ex.: um Aluno possui vários Pagamentos), enquanto a relação N:N (muitos para muitos) entre Treino e Exercício exige obrigatoriamente a criação de uma entidade associativa intermediária.<br>**Regras de Negócio:** a IA gerou diretrizes como "Um aluno só pode se matricular se tiver cadastro ativo", "Um pagamento deve estar vinculado a um aluno e plano" e "Equipamentos em manutenção não podem constar como disponíveis para uso".<br>**Caracterização:** a IA sugeriu um texto abordando a natureza com fins lucrativos, estimativa de 300 alunos, 25 colaboradores, funcionamento de segunda a sábado, e apontando o uso de papéis físicos como problema principal de gestão. |
+| **Fontes consultadas e verificadas** | As sugestões geradas pelas ferramentas de IA foram rigorosamente comparadas e validadas com a realidade observada na pesquisa de campo realizada presencialmente na Argos Fitness (regras reais de mensalidades, modalidades oferecidas e controle de acesso local). |
+| **Trechos rejeitados ou corrigidos** | **Dicionário de Dados:** algumas sugestões iniciais traziam atributos excessivos ou complexos demais para o porte da academia (como controle de catraca digital avançada e biometria), que foram descartados por não fazerem parte da realidade atual da organização.<br>**Regras de Negócio:** respostas genéricas da IA que sugerem integrações automáticas com bancos externos ou taxas bancárias complexas foram removidas para focar exclusivamente nos processos manuais/simples observados na empresa. |
+| **Justificativa da escolha final** | O grupo manteve apenas as estruturas, atributos e regras que se alinham diretamente ao porte da Argos Fitness e aos limites propostos pelo escopo do trabalho acadêmico, garantindo simplicidade e aplicabilidade real. |
+| **Reflexão crítica** | Identificou-se que a IA tende a generalizar processos de grandes redes de academias, sugerindo automações complexas incompatíveis com uma organização de pequeno porte. O uso exigiu constante senso crítico do grupo para filtrar alucinações e excessos tecnológicos, garantindo que o modelo refletisse fielmente a realidade da empresa estudada. |
