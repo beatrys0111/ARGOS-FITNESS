@@ -61,6 +61,8 @@ Outro fator importante foi a **facilidade de acesso à organização e aos seus 
 - **Endereço:** Rua José Oiticica Filho, 1008 — Itaquera, São Paulo – SP, 08210-510
 - **Telefone:** (11) 2074-0145
 - **Localização:** [ARGOS FITNESS ACADEMIA](https://maps.app.goo.gl/atC6Nw4yhaU8ndBn6)
+
+<img width="828" height="597" alt="argos fitness" src="https://github.com/user-attachments/assets/1f791bd1-b772-4365-92e2-6c0437b1d771" />
 ---
  
 ## 2. Processos de Negócio
