@@ -370,7 +370,7 @@ Cardinalidades na notação (mínima, máxima) do BRModelo, lidas conforme apare
  
 ## 7. Diagrama Entidade-Relacionamento (DER)
  
-![DER — ARGOS FITNESS](DER.jpg)
+[![DER — ARGOS FITNESS](DER/DER-ARGOS-FITNESS.jpg)](DER/README.md)
  
 O DER foi elaborado no BRModelo Web, com notação (mínima, máxima) para as cardinalidades. Ele representa:
  
