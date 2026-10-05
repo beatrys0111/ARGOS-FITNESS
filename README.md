@@ -393,7 +393,7 @@ O Dicionário de Dados apresenta a estrutura das entidades, atributos, tipos de 
 
 O documento completo está disponível no repositório:
 
-**[📄 Acessar Dicionário de Dados — Argos Fitness](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.pdf)**
+**[Acessar Dicionário de Dados - Argos Fitness](https://github.com/beatrys0111/ARGOS-FITNESS/blob/main/docs/01-Dicionario-de-Dados/Dicionario%20de%20Dados%20Sistema%20ARGO%20FITNESS.pdf)**
 
 ## Entidades identificadas no modelo
 
