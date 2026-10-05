@@ -370,15 +370,14 @@ Cardinalidades na notação (mínima, máxima) do BRModelo, lidas conforme apare
  
 ## 7. Diagrama Entidade-Relacionamento (DER)
  
-[![DER — ARGOS FITNESS](DER/DER-ARGOS-FITNESS.jpg)](DER/README.md)
- 
+O DER está disponível na pasta docs/DER deste repositório (arquivo DER-ARGOS-FITNESS.jpg e página README.md).
+
 O DER foi elaborado no BRModelo Web, com notação (mínima, máxima) para as cardinalidades. Ele representa:
- 
-- **Entidades:** Pessoa, Aluno, Instrutor, Fornecedor, Plano, Matrícula, Pagamento, Acesso, Treino, Exercício, Avaliação Física, Equipamento e Manutenção;
-- **Atributos** de cada entidade, com os identificadores marcados como (PK);
-- **Relacionamentos** com suas cardinalidades, detalhados na Seção 6;
-- **Generalização/especialização** de Pessoa em Aluno, Instrutor e Fornecedor.
----
+
+Entidades: Pessoa, Aluno, Instrutor, Fornecedor, Plano, Matrícula, Pagamento, Acesso, Treino, Exercício, Avaliação Física, Equipamento e Manutenção;
+Atributos de cada entidade, com os identificadores marcados como (PK);
+Relacionamentos com suas cardinalidades, detalhados na Seção 6;
+Generalização/especialização de Pessoa em Aluno, Instrutor e Fornecedor.
  
 ## 8. Justificativa Técnica
  
