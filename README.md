@@ -177,7 +177,7 @@ Durante a análise da **ARGOS FITNESS**, foram identificadas restrições organi
  
 ## 5. Dicionário de Dados Conceitual (Preliminar)
  
-Dicionário construído a partir do DER (Seção 7) e do [documento complementar de Dicionário de Dados do sistema](01-Dicionario-de-Dados/README.md), que traz os tipos físicos (MySQL 8) e os índices. A obrigatoriedade indicada abaixo é uma **proposta**, pois o DER não explicita nulabilidade, e deve ser validada antes da implementação.
+Dicionário construído a partir do DER (Seção 7) e do [documento complementar de Dicionário de Dados do sistema](docs/01-Dicionario-de-Dados/README.md), que traz os tipos físicos (MySQL 8) e os índices. A obrigatoriedade indicada abaixo é uma **proposta**, pois o DER não explicita nulabilidade, e deve ser validada antes da implementação.
  
 **Prefixos utilizados:** `nm_` = nome; `dt_` = data; `id_` = identificador; `cd_` = código; `qt_` = quantidade; `tp_` = tipo/categorização; `ds_` = descrição/texto livre; `vr_` = valor numérico/monetário.
  
