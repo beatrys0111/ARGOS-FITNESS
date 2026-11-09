@@ -2,7 +2,7 @@
 
 Esta versão reúne os documentos revisados do sistema ARGOS FITNESS.
 
-### Documentos atualizados
+### Documentos atualizados     
 
 - **DER conceitual revisado:** [DER_Conceitual.pdf](docs/diagramas/DER_Conceitual.pdf)
 - **Modelo lógico revisado:** [Modelo_Logico.png](docs/diagramas/Modelo_Logico.png)
