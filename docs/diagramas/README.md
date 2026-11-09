@@ -1,8 +1,8 @@
 # Diagramas — ARGOS FITNESS
 
-Esta pasta reúne os diagramas atualizados do projeto.
+Esta pasta contém os diagramas revisados do projeto:
 
-- **DER conceitual:** [visualizar no BRModelo Web](https://app.brmodeloweb.com/conceptual/6abe472cc331589fb9e371a9).
-- **Modelo lógico:** a captura enviada nesta atualização está sendo mantida como referência de trabalho; o arquivo de imagem/PDF deverá ser anexado ao repositório quando estiver disponível para publicação binária.
+- [DER conceitual revisado (PDF)](DER_Conceitual.pdf)
+- [Modelo lógico revisado (PNG)](Modelo_Logico.png)
 
-O diagrama conceitual e o modelo lógico devem representar o mesmo conjunto de entidades e relacionamentos. A entidade ESTOQUE foi deixada fora desta etapa, conforme decisão do grupo.
+Os arquivos correspondem à versão atualizada da modelagem da Entrega 2. A entidade ESTOQUE não foi incluída nesta versão, conforme decisão do grupo.

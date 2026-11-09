@@ -1,20 +1,19 @@
 ## Entrega 2 — Atualização da modelagem e documentação
 
-Esta versão reúne a documentação revisada do sistema ARGOS FITNESS. O conteúdo da Entrega 1 permanece abaixo como histórico do levantamento e da definição inicial do projeto.
+Esta versão reúne os documentos revisados do sistema ARGOS FITNESS.
 
 ### Documentos atualizados
 
+- **DER conceitual revisado:** [DER_Conceitual.pdf](docs/diagramas/DER_Conceitual.pdf)
+- **Modelo lógico revisado:** [Modelo_Logico.png](docs/diagramas/Modelo_Logico.png)
 - **Dicionário de Dados v2.0 (HTML):** [abrir dicionário](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
-- **Levantamento complementar:** [abrir levantamento](levantamento/Levantamento.md)
-- **DER conceitual:** [abrir modelo conceitual no BRModelo Web](https://app.brmodeloweb.com/conceptual/6abe472cc331589fb9e371a9)
-- **Modelo lógico:** arquivo de diagrama a ser anexado nesta pasta após a exportação da imagem/PDF atualizada.
-- **Script SQL:** pendente de inclusão; será adicionado após a finalização do script.
+- **Levantamento:** [abrir levantamento](levantamento/Levantamento.md)
+- **Script SQL:** pendente de inclusão após a finalização do script.
 
-### Escopo documentado nesta atualização
+O modelo documenta pessoas, alunos, instrutores, telefones, matrículas, planos, pagamentos, acessos, treinos, exercícios, avaliações físicas, fornecedores, equipamentos, manutenção e contas a pagar. A entidade ESTOQUE não faz parte desta versão.
 
-O modelo contempla cadastro de pessoas, perfis de aluno e instrutor, telefones, matrículas, planos, pagamentos, acessos, treinos, exercícios, avaliações físicas, fornecedores, equipamentos, manutenção e contas a pagar. O dicionário v2.0 documenta atributos, tipos físicos, obrigatoriedade proposta, chaves e índices.
+> **Nota:** o script SQL será incluído posteriormente. As restrições de integridade e regras físicas do banco deverão ser conferidas junto à implementação.
 
-> **Nota de versão:** o script SQL ainda não foi disponibilizado nesta atualização. As regras de nulidade marcadas com asterisco no dicionário são propostas e precisam ser validadas antes da implementação física.
 
 ---
 
@@ -198,7 +197,7 @@ Durante a análise da **ARGOS FITNESS**, foram identificadas restrições organi
  
 ## 5. Dicionário de Dados Conceitual (Preliminar)
  
-Dicionário construído a partir do DER (Seção 7) e do [documento complementar de Dicionário de Dados do sistema](docs/01-Dicionario-de-Dados/README.md), que traz os tipos físicos (MySQL 8) e os índices. A obrigatoriedade indicada abaixo é uma **proposta**, pois o DER não explicita nulabilidade, e deve ser validada antes da implementação.
+Dicionário construído a partir do DER (Seção 7) e do [documento complementar de Dicionário de Dados do sistema](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html), que traz os tipos físicos (MySQL 8) e os índices. A obrigatoriedade indicada abaixo é uma **proposta**, pois o DER não explicita nulabilidade, e deve ser validada antes da implementação.
 
 Versão em HTML: [Dicionário de Dados — ARGOS FITNESS](https://beatrys0111.github.io/ARGOS-FITNESS/docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
  
@@ -395,7 +394,7 @@ Cardinalidades na notação (mínima, máxima) do BRModelo, lidas conforme apare
  
 ## 7. Diagrama Entidade-Relacionamento (DER)
  
-O DER está disponível na pasta **`docs/DER`** deste repositório (arquivo `DER-ARGOS-FITNESS.jpg` e página `README.md`).
+O DER conceitual revisado está disponível em [`docs/diagramas/DER_Conceitual.pdf`](docs/diagramas/DER_Conceitual.pdf), e o modelo lógico em [`docs/diagramas/Modelo_Logico.png`](docs/diagramas/Modelo_Logico.png).
  
 O DER foi elaborado no BRModelo Web, com notação (mínima, máxima) para as cardinalidades. Ele representa:
  
