@@ -1,7 +1,7 @@
 ## Entrega 2 — Atualização da modelagem e documentação
 
 Esta versão reúne os documentos revisados do sistema ARGOS FITNESS.
-
+                                                                                           
 ### Documentos atualizados     
 
 - **DER conceitual revisado:** [DER_Conceitual.pdf](docs/diagramas/DER_Conceitual.pdf)
