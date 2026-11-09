@@ -8,7 +8,7 @@ Esta versão reúne os documentos revisados do sistema ARGOS FITNESS.
 - **Modelo lógico revisado:** [Modelo_Logico.png](docs/diagramas/Modelo_Logico.png)
 - **Dicionário de Dados v2.0 (HTML):** [abrir dicionário](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
 - **Levantamento:** [abrir levantamento](levantamento/Levantamento.md)
-- **Script SQL:** pendente de inclusão após a finalização do script.
+- **Script SQL:** pendente de inclusão após a finalização do script. 
 
 O modelo documenta pessoas, alunos, instrutores, telefones, matrículas, planos, pagamentos, acessos, treinos, exercícios, avaliações físicas, fornecedores, equipamentos, manutenção e contas a pagar. A entidade ESTOQUE não faz parte desta versão.
 
