@@ -1,273 +1,501 @@
-<html lang="pt-BR"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Dicionário de Dados — Sistema de Gestão de Academia</title>
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dicionário de Dados — ARGOS FITNESS v2.0</title>
+<style>
+:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#eef1f5;color:#20242b;font:15px/1.55 Arial,sans-serif}
+header{max-width:1100px;margin:28px auto 16px;padding:24px;background:#fff;border-radius:12px}
+h1{font-size:24px;margin:0 0 8px}header p{margin:0;color:#555}
+main{max-width:1100px;margin:0 auto 40px;padding:0 12px}
+.page{background:#fff;margin:16px 0;padding:28px;border-radius:10px;box-shadow:0 2px 8px #0000000d;overflow:auto}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.55 "SFMono-Regular",Consolas,monospace;margin:0}
+@media print{body{background:#fff}.page{box-shadow:none;border-radius:0;margin:0;padding:16mm;break-after:page}header{margin:0;padding:16mm}main{max-width:none;padding:0}}
+</style></head><body>
+<header><h1>Dicionário de Dados — ARGOS FITNESS</h1><p>Versão v2.0 · 09/11/2026 · Transcrição em HTML do documento de referência, preservando o conteúdo e a organização textual das páginas.</p></header>
+<main><section class="page"><pre>&lt;PARSED TEXT FOR PAGE: 1 / 9&gt;
+DICIONÁRIO DE DADOS — SISTEMA DE GESTÃO DE ACADEMIA
+Documento elaborado a partir do Diagrama Entidade-Relacionamento (DER) conceitual e do modelo lógico
+do sistema, seguindo a estrutura do modelo de referência de Dicionário de Dados.
+Versão: v2.0     Data: 09/novembro/2026
+Observação metodológica: o DER apresenta entidades, atributos e relacionamentos, mas não explicita as
+regras de nulidade/obrigatoriedade. Por isso, os campos marcados com * possuem proposta para a
+documentação lógica; essa decisão deve ser validada antes da implementação física.
+
+1. MODELO CONCEITUAL
+O modelo representa um sistema de gestão de academia, organizado em três núcleos principais: pessoas e
+perfis de usuários; logística e controle de equipamentos e estoque; e gestão acadêmica e financeira, que
+reúne matrículas, treinos, exercícios, avaliações físicas, pagamentos e contas a pagar. A entidade PESSOA
+funciona como cadastro-base, enquanto ALUNO e INSTRUTOR representam especializações do domínio.
+TREINO_EXERCICIO atua como entidade associativa entre TREINO e EXERCICIO.
 
-<style> :root { --primary: #1f4e78; --primary-dark: #163a5c; --secondary: #eaf2f8; --border: #cbd5e1; --text: #1f2937; --muted: #64748b; --background: #f8fafc; --white: #ffffff; --warning: #fff7ed; --warning-border: #fb923c; }
+ Entidade                   Relaciona-se com          Cardinalidade / Regra de Negócio
 
-* { box-sizing: border-box; }
+ PESSOA                     TELEFONE                  1 : N — uma pessoa pode possuir vários telefones.
 
-body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text); background: var(--background); line-height: 1.6; }
+ PESSOA                     INSTRUTOR                 1 : 0..1 — uma pessoa pode possuir um perfil de instrutor.
 
-.container { max-width: 1200px; margin: 0 auto; background: var(--white); padding: 48px 56px; box-shadow: 0 0 25px rgba(0, 0, 0, 0.06); }
+ PESSOA                     ALUNO                     1 : 0..1 — uma pessoa pode possuir um perfil de aluno.
 
-header { border-bottom: 4px solid var(--primary); padding-bottom: 24px; margin-bottom: 36px; }
+                                                      1 : N — um aluno pode possuir várias matrículas ao longo do
+ ALUNO                      MATRICULA
+                                                      tempo.
 
-header h1 { margin: 0 0 12px; color: var(--primary-dark); font-size: 30px; line-height: 1.25; }
+ PLANO                      MATRICULA                 1 : N — um plano pode estar associado a várias matrículas.
 
-header .subtitle { margin: 0; color: var(--muted); font-size: 16px; }
+ MATRICULA                  PAGAMENTO                 1 : N — uma matrícula gera vários registros de pagamento.
 
-.metadata { display: flex; flex-wrap: wrap; gap: 10px 30px; margin-top: 20px; font-size: 14px; }
+ MATRICULA                  ACESSO                    1 : N — uma matrícula registra vários acessos.
 
-.metadata strong { color: var(--primary-dark); }
+ ALUNO                      AVALIACAO_FISICA          1 : N — um aluno realiza várias avaliações ao longo do tempo.
 
-.notice { margin: 24px 0; padding: 18px 20px; background: var(--warning); border-left: 5px solid var(--warning-border); border-radius: 4px; }
+                                                      1 : N — um aluno pode possuir vários treinos ao longo do
+ ALUNO                      TREINO
+                                                      tempo.
 
-h2 { margin-top: 48px; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 2px solid var(--primary); color: var(--primary-dark); font-size: 23px; }
+ INSTRUTOR                  TREINO                    1 : N — um instrutor pode elaborar vários treinos.
 
-h3 { margin-top: 38px; margin-bottom: 14px; padding: 10px 14px; color: var(--primary-dark); background: var(--secondary); border-left: 5px solid var(--primary); font-size: 19px; }
+ TREINO                     EXERCICIO                 N : M — a relação é realizada por TREINO_EXERCICIO.
 
-p { margin: 12px 0; }
+ FORNECEDOR                 EQUIPAMENTO               1 : N — um fornecedor pode fornecer vários equipamentos.
 
-.formula { margin: 16px 0; padding: 15px 18px; background: #f1f5f9; border: 1px solid var(--border); border-radius: 5px; font-family: "Courier New", Courier, monospace; font-size: 14px; overflow-x: auto; }
+ FORNECEDOR                 ESTOQUE                   1 : N — um fornecedor pode abastecer vários itens de estoque.
 
-.reading { margin: 12px 0 20px; }
+ FORNECEDOR                 CONTAS_A_PAGAR            1 : N — um fornecedor pode gerar várias contas a pagar.
 
-table { width: 100%; border-collapse: collapse; margin: 18px 0 28px; font-size: 14px; }
+                                                      1 : N — um equipamento pode possuir vários registros de
+ EQUIPAMENTO                MANUTENCAO
+                                                      manutenção.
 
-th { background: var(--primary); color: var(--white); text-align: left; font-weight: bold; padding: 11px 12px; border: 1px solid var(--primary-dark); }
+PESSOA é a entidade cadastral comum. ALUNO representa o usuário matriculado em um plano.
+INSTRUTOR representa o profissional responsável por treinos. FORNECEDOR, EQUIPAMENTO,
+MANUTENCAO e ESTOQUE compõem o núcleo de logística, e CONTAS_A_PAGAR registra as obrigações
+financeiras com fornecedores. PLANO, MATRICULA, PAGAMENTO e ACESSO compõem a relação
+comercial. TREINO, EXERCICIO e TREINO_EXERCICIO organizam a prescrição dos exercícios, enquanto
+AVALIACAO_FISICA registra medidas e acompanhamento.</pre></section>
+<section class="page"><pre>Dicionário de Dados — Sistema de Gestão de Academia                                                            Página 1
+&lt;PARSED TEXT FOR PAGE: 2 / 9&gt;
+2. FLUXO DE DADOS (VISÃO DE DFD)
+Os dados entram no sistema principalmente pelo cadastro de PESSOA, que pode originar perfis de ALUNO
+e INSTRUTOR e seus respectivos telefones. O aluno é vinculado a um PLANO por meio da MATRICULA,
+que gera registros de PAGAMENTO e de ACESSO. No núcleo de treinamento, o instrutor cria TREINO para
+o aluno e seleciona EXERCICIOS por meio de TREINO_EXERCICIO, armazenando séries, repetições,
+carga e intervalo. Paralelamente, o sistema registra AVALIACAO_FISICA para acompanhar medidas do
+aluno. No núcleo de logística, FORNECEDOR é relacionado a EQUIPAMENTO, ESTOQUE e
+CONTAS_A_PAGAR, enquanto MANUTENCAO registra intervenções realizadas nos equipamentos. Em
+uma implementação real, operações de leitura e escrita devem ser submetidas a mecanismos de auditoria e
+controle de acesso.
 
-td { padding: 10px 12px; border: 1px solid var(--border); vertical-align: top; }
+3. CONVENÇÕES DO DICIONÁRIO
+SGBD: MySQL 8, mecanismo InnoDB.
+Codificação: utf8mb4 com collation utf8mb4_0900_ai_ci.
 
-tbody tr:nth-child(even) { background: #f8fafc; }
+ Símbolo                             Significado
 
-tbody tr:hover { background: #eef6fc; }
+ =                                   é composto de
 
-.index-info { margin: 10px 0 28px; padding: 12px 15px; background: #f8fafc; border-left: 3px solid var(--primary); font-size: 14px; }
+ +                                   e; conecta elementos obrigatórios
 
-.convention-table td:first-child { width: 130px; font-family: "Courier New", Courier, monospace; font-weight: bold; color: var(--primary-dark); }
+ ()                                  elemento opcional
 
-.toc { padding: 20px 24px; background: var(--secondary); border-radius: 6px; margin-bottom: 30px; }
+ @                                   identificador / chave primária
 
-.toc h2 { margin-top: 0; border: 0; padding: 0; font-size: 20px; }
+ **                                  comentário fora da estrutura formal
 
-.toc ol { margin-bottom: 0; }
+Prefixos utilizados: NM_ = nome; NR_ = número; DT_ = data; ID_ = identificador; CD_ = código; QT_ =
+quantidade; TP_ = tipo/categorização; DS_ = descrição/texto livre; VR_ = valor numérico/monetário.
+Nota sobre obrigatoriedade: “Sim” é usado para chaves primárias e para atributos que precisam existir para
+o registro cumprir sua função. “Não” é usado para informações naturalmente condicionais. Quando aparece
+“Sim*” ou “Não*”, trata-se de uma proposta de implementação, pois o DER não explicita nulidade.</pre></section>
+<section class="page"><pre>Dicionário de Dados — Sistema de Gestão de Academia                                                Página 2
+&lt;PARSED TEXT FOR PAGE: 3 / 9&gt;
+4. DICIONÁRIO DE DADOS POR ENTIDADE
 
-.toc a { color: var(--primary-dark); text-decoration: none; }
+4.1 PESSOAS E PERFIS
+PESSOA = @ID_PESSOA + NM_PESSOA + CD_CPF + NM_EMAIL
+Leitura: Cadastro-base de todas as pessoas. Os dados de identificação são guardados uma só vez e
+reaproveitados por ALUNO e INSTRUTOR.
 
-.toc a:hover { text-decoration: underline; }
+ Atributo                            Tipo físico      Obrigatório    Significado e relevância
 
-.access-table th { text-align: center; }
+ ID_PESSOA                           integer          Sim (PK)       Identificador único da pessoa
 
-.access-table td { text-align: left; }
+ NM_PESSOA                           varchar(120)     Sim*           Nome completo
 
-footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; }
+ CD_CPF                              varchar(14)      Sim*           CPF para identificação do cadastro
 
-.small-note { color: var(--muted); font-size: 13px; }
+ NM_EMAIL                            varchar(120)     Sim*           E-mail de contato
 
-@media (max-width: 800px) { .container { padding: 25px 18px; }
+Índices: PK ID_PESSOA; índice único em CD_CPF; índice em NM_PESSOA.
 
-header h1 { font-size: 24px; }
+TELEFONE = @ID_TELEFONE + ID_PESSOA + NR_TELEFONE + TP_TELEFONE
+Leitura: Guarda os telefones de uma pessoa, permitindo mais de um contato por pessoa.
 
-table { display: block; overflow-x: auto; white-space: normal; }
+ Atributo                            Tipo físico      Obrigatório    Significado e relevância
 
-h2 { font-size: 20px; } }
+ ID_TELEFONE                         integer          Sim (PK)       Identificador único do telefone
 
-@media print { body { background: white; }
+ ID_PESSOA                           integer          Sim (FK)       PESSOA dona do número
 
-.container { max-width: none; box-shadow: none; padding: 20px; }
+ NR_TELEFONE                         varchar(20)      Sim*           Número com DDD
 
-.toc { break-after: page; }
+ TP_TELEFONE                         varchar(30)      Sim*           Tipo: celular, residencial ou comercial
 
-h2 { break-before: page; }
+Índices: PK ID_TELEFONE; FK ID_PESSOA referencia PESSOA(ID_PESSOA); índice em ID_PESSOA.
 
-h3 { break-after: avoid; }
+INSTRUTOR = @ID_PESSOA + CD_CREF + (DS_ESPECIALIDADE) + DT_ADMISSAO
+Leitura: Especialização profissional de uma pessoa. A chave é a própria ID_PESSOA.
 
-table { break-inside: auto; }
+ Atributo                            Tipo físico      Obrigatório    Significado e relevância
 
-tr { break-inside: avoid; break-after: auto; }
+ ID_PESSOA                           integer          Sim (PK, FK)   PESSOA que atua como instrutor
 
-thead { display: table-header-group; }
+ CD_CREF                             varchar(30)      Sim*           Registro profissional no CREF
 
-footer { display: none; }
+ DS_ESPECIALIDADE                    varchar(120)     Não*           Área de atuação
 
-a { color: inherit; text-decoration: none; } } </style> </head>
+ DT_ADMISSAO                         date             Sim*           Data de admissão na academia
 
-<body> <div class="container">
+Índices: PK e FK ID_PESSOA referencia PESSOA(ID_PESSOA); índice único em CD_CREF.
 
-<header> <h1>DICIONÁRIO DE DADOS — SISTEMA DE GESTÃO DE ACADEMIA</h1> <p class="subtitle"> Documento elaborado a partir do Diagrama Entidade-Relacionamento (DER) fornecido e seguindo a estrutura do modelo de referência de Dicionário de Dados. </p>
+ALUNO = @ID_PESSOA + (DS_OBJETIVO) + (VR_ALTURA) + (VR_PESO)
+Leitura: Especialização de pessoa como aluno. O plano e a data de início ficam na Matrícula; o histórico de
+medidas fica em Avaliação Física.
 
-<div class="metadata"> <div><strong>Versão:</strong> v1.0</div> <div><strong>Data:</strong> 14/setembro/2026</div> </div> </header>
+ Atributo                            Tipo físico      Obrigatório    Significado e relevância
 
-<div class="notice"> <strong>Observação metodológica:</strong> a imagem do DER apresenta entidades, atributos, tipos físicos e relacionamentos, mas não explicita todas as regras de nulidade/obrigatoriedade. Por isso, os campos marcados com * possuem obrigatoriedade proposta para a documentação lógica; essa decisão deve ser validada antes da implementação física. </div>
+ ID_PESSOA                           integer          Sim (PK, FK)   PESSOA que atua como aluno
 
-<nav class="toc"> <h2>Sumário</h2> <ol> <li><a href="#modelo-conceitual">Modelo Conceitual</a></li> <li><a href="#fluxo-dados">Fluxo de Dados (Visão de DFD)</a></li> <li><a href="#convencoes">Convenções do Dicionário</a></li> <li><a href="#dicionario">Dicionário de Dados por Entidade</a></li> <li><a href="#log-acesso">Log de Acesso (Metadado Operacional)</a></li> <li><a href="#lgpd">Acesso por Operação e Conformidade com a LGPD</a></li> </ol> </nav>
+ DS_OBJETIVO                         varchar(255)     Não*           Objetivo informado pelo aluno
 
-<section id="modelo-conceitual"> <h2>1. MODELO CONCEITUAL</h2>
+ VR_ALTURA                           decimal(5,2)     Não*           Altura atual, em metros
 
-<p> O modelo representa um sistema de gestão de academia, organizado em três núcleos principais: pessoas e perfis de usuários; logística e controle de equipamentos/estoque; e gestão acadêmica de treinos, exercícios, avaliações físicas e pagamentos. A entidade PESSOA funciona como cadastro-base, enquanto ALUNO e INSTRUTOR representam especializações do domínio. No núcleo de treinamento, TREINO_EXERCICIO atua como entidade associativa entre TREINO e EXERCICIO. </p>
+ VR_PESO                             decimal(6,2)     Não*           Peso atual, em kg
 
-<table> <thead> <tr> <th>Entidade</th> <th>Relaciona-se com</th> <th>Cardinalidade / Regra de Negócio</th> </tr> </thead> <tbody> <tr> <td>PESSOA</td> <td>INSTRUTOR</td> <td>1 : 0..1 — uma pessoa pode possuir um perfil de instrutor; cada instrutor pertence a uma pessoa.</td> </tr> <tr> <td>PESSOA</td> <td>ALUNO</td> <td>1 : 0..1 — uma pessoa pode possuir um perfil de aluno; a implementação deve validar a origem de IDUSUARIO no DER.</td> </tr> <tr> <td>PESSOA</td> <td>TELEFONE</td> <td>1 : N — uma pessoa pode possuir vários telefones.</td> </tr> <tr> <td>FORNECEDOR</td> <td>EQUIPAMENTO</td> <td>1 : N — um fornecedor pode fornecer vários equipamentos.</td> </tr> <tr> <td>FORNECEDOR</td> <td>ESTOQUE</td> <td>1 : N — um fornecedor pode estar relacionado a vários itens de estoque.</td> </tr> <tr> <td>EQUIPAMENTO</td> <td>MANUTENCAO</td> <td>1 : N — um equipamento pode possuir vários registros de manutenção.</td> </tr> <tr> <td>PLANO</td> <td>ALUNO</td> <td>1 : N — um plano pode estar associado a vários alunos.</td> </tr> <tr> <td>ALUNO</td> <td>PAGAMENTO</td> <td>1 : N — um aluno ativo pode possuir vários registros de pagamento.</td> </tr> <tr> <td>ALUNO</td> <td>TREINO</td> <td>1 : N — um aluno ativo pode possuir vários treinos ao longo do tempo.</td> </tr> <tr> <td>INSTRUTOR</td> <td>TREINO</td> <td>1 : N — um instrutor pode elaborar vários treinos.</td> </tr> <tr> <td>TREINO</td> <td>EXERCICIO</td> <td>N : M — a relação é realizada por TREINOEXERCICIO.</td> </tr> <tr> <td>ALUNO</td> <td>AVALIACAOFISICA</td> <td>1 : N — um aluno pode possuir várias avaliações ao longo do tempo.</td> </tr> <tr> <td>INSTRUTOR</td> <td>AVALIACAOFISICA</td> <td>1 : N — um instrutor pode realizar várias avaliações.</td> </tr> </tbody> </table>
+Índices: PK e FK ID_PESSOA referencia PESSOA(ID_PESSOA).</pre></section>
+<section class="page"><pre>Dicionário de Dados — Sistema de Gestão de Academia                                                            Página 3
+&lt;PARSED TEXT FOR PAGE: 4 / 9&gt;
+4.2 NÚCLEO COMERCIAL E DE ACESSO
+PLANO = @ID_PLANO + NM_PLANO + VR_VALOR + QT_DURACAO_MESES
+Leitura: Planos oferecidos pela academia, com valor e duração.
 
-<p> PESSOA é a entidade cadastral comum. ALUNO representa o usuário matriculado e associado a um plano. INSTRUTOR representa o profissional responsável por treinos e avaliações. FORNECEDOR, EQUIPAMENTO, MANUTENCAO e ESTOQUE compõem o núcleo de logística. PLANO e PAGAMENTO controlam a relação comercial. TREINO, EXERCICIO e TREINOEXERCICIO organizam a prescrição dos exercícios, enquanto AVALIACAOFISICA registra medidas e acompanhamento. </p> </section>
+ Atributo                            Tipo físico      Obrigatório   Significado e relevância
 
-<section id="fluxo-dados"> <h2>2. FLUXO DE DADOS (VISÃO DE DFD)</h2>
+ ID_PLANO                            integer          Sim (PK)      Identificador único do plano
 
-<p> Os dados entram no sistema principalmente pelo cadastro de PESSOA, que pode originar perfis de ALUNO e INSTRUTOR e seus respectivos telefones. O aluno é associado a um PLANO e pode gerar registros de PAGAMENTO. No núcleo de treinamento, o instrutor cria TREINO para o aluno e seleciona EXERCICIOS por meio de TREINO_EXERCICIO, armazenando séries, repetições, carga e intervalo. </p>
+ NM_PLANO                            varchar(120)     Sim*          Nome comercial do plano
 
-<p> Paralelamente, o sistema registra AVALIACAO_FISICA para acompanhar medidas do aluno. No núcleo de logística, FORNECEDOR é relacionado a EQUIPAMENTO e ESTOQUE, enquanto MANUTENCAO registra intervenções realizadas nos equipamentos. Em uma implementação real, operações de leitura e escrita devem ser submetidas a mecanismos de auditoria e controle de acesso. </p> </section>
+ VR_VALOR                            decimal(10,2)    Sim*          Valor do plano, em reais
 
-<section id="convencoes"> <h2>3. CONVENÇÕES DO DICIONÁRIO</h2>
+ QT_DURACAO_MESES                    integer          Sim*          Duração em meses
 
-<p><strong>SGBD:</strong> MySQL 8, mecanismo InnoDB.</p> <p><strong>Codificação:</strong> utf8mb4 com collation utf8mb40900ai_ci.</p>
+Índices: PK ID_PLANO.
 
-<table class="convention-table"> <thead> <tr> <th>Símbolo</th> <th>Significado</th> </tr> </thead> <tbody> <tr><td>=</td><td>é composto de</td></tr> <tr><td>+</td><td>e; conecta elementos obrigatórios</td></tr> <tr><td>( )</td><td>elemento opcional</td></tr> <tr><td>{ }, n{ }m</td><td>iteração, com limite mínimo n e máximo m</td></tr> <tr><td>[ | ]</td><td>escolha obrigatória entre alternativas</td></tr> <tr><td>//</td><td>rótulo de grupo repetitivo</td></tr> <tr><td>@</td><td>identificador / chave primária</td></tr> <tr><td></td><td>comentário fora da estrutura formal</td></tr> </tbody> </table>
+MATRICULA = @ID_MATRICULA + ID_ALUNO + ID_PLANO + DT_INICIO + (DT_FIM) + TP_STATUS
+Leitura: Vínculo de um aluno com um plano por um período. É a tabela-pai de PAGAMENTO e ACESSO.
 
-<p> <strong>Prefixos utilizados:</strong> NM = nome; DT = data; ID = identificador; CD = código; QT = quantidade; TP = tipo/categorização; DS = descrição/texto livre; VR = valor numérico/monetário. Para medidas físicas, VR_ é usado de forma consistente com o modelo de referência. </p>
+ Atributo                            Tipo físico      Obrigatório   Significado e relevância
 
-<p> <strong>Nota sobre obrigatoriedade:</strong> “Sim” é usado para chaves primárias e para atributos que precisam existir para o registro cumprir sua função. “Não” é usado para informações naturalmente condicionais. Quando aparece “Sim” ou “Não”, trata-se de uma proposta de implementação, pois o DER fornecido não explicita nulabilidade. </p> </section>
+ ID_MATRICULA                        integer          Sim (PK)      Identificador único da matrícula
 
-<section id="dicionario"> <h2>4. DICIONÁRIO DE DADOS POR ENTIDADE</h2>
+ ID_ALUNO                            integer          Sim (FK)      ALUNO matriculado
 
-<!-- FORNECEDOR --> <article> <h3>FORNECEDOR</h3>
+ ID_PLANO                            integer          Sim (FK)      PLANO contratado
 
-<div class="formula"> FORNECEDOR = @IDFORNECEDOR + NMFORNECEDOR + CDCNPJ + (NMEMAIL) </div>
+ DT_INICIO                           date             Sim*          Início da vigência
 
-<p class="reading"> <strong>Leitura:</strong> @ID_FORNECEDOR identifica unicamente o fornecedor. O nome e o CNPJ são dados principais do cadastro; e-mail e endereço foram tratados como opcionais, pois o DER não apresenta regra explícita de obrigatoriedade. </p>
+ DT_FIM                              date             Não*          Fim da vigência, quando definido
 
-<table> <thead> <tr> <th>Atributo</th> <th>Tipo físico</th> <th>Obrigatório</th> <th>Significado e relevância</th> </tr> </thead> <tbody> <tr> <td>IDFORNECEDOR</td> <td>integer</td> <td>Sim (PK)</td> <td>Identificador único do fornecedor.</td> </tr> <tr> <td>NMFORNECEDOR</td> <td>varchar(120)</td> <td>Sim*</td> <td>Nome ou razão social do fornecedor.</td> </tr> <tr> <td>CDCNPJ</td> <td>varchar(18)</td> <td>Sim</td> <td>CNPJ utilizado para identificação fiscal do fornecedor.</td> </tr> <tr> <td>NM_EMAIL</td> <td>varchar(120)</td> <td>Não*</td> <td>E-mail para contato e comunicação com o fornecedor.</td> </tr> </tbody> </table>
+ TP_STATUS                           varchar(30)      Sim*          Situação: ativa, trancada ou encerrada
 
-<div class="index-info"> <strong>Índices:</strong> PK IDFORNECEDOR; índice secundário sugerido em CDCNPJ para validação e localização do fornecedor. </div> </article>
+Índices: PK ID_MATRICULA; FK ID_ALUNO referencia ALUNO(ID_PESSOA); FK ID_PLANO referencia
+PLANO(ID_PLANO); índices em ID_ALUNO e ID_PLANO.
 
-<!-- EQUIPAMENTO --> <article> <h3>EQUIPAMENTO</h3>
+PAGAMENTO = @ID_PAGAMENTO + ID_MATRICULA + VR_VALOR + DT_VENCIMENTO + TP_STATUS_PAGAMENTO
+Leitura: Cobranças geradas por uma matrícula.
 
-<div class="formula"> EQUIPAMENTO = @IDEQUIPAMENTO + NMEQUIPAMENTO + (DSDESCRICAO) + QTQUANTIDADE + TPSTATUS + IDFORNECEDOR </div>
+ Atributo                            Tipo físico      Obrigatório   Significado e relevância
 
-<p class="reading"> <strong>Leitura:</strong> O registro representa um equipamento pertencente à academia. ID_FORNECEDOR vincula o equipamento ao fornecedor responsável; os demais campos descrevem identificação, quantidade, aquisição e situação do equipamento. </p>
+ ID_PAGAMENTO                        integer          Sim (PK)      Identificador único do pagamento
 
-<table> <thead> <tr> <th>Atributo</th> <th>Tipo físico</th> <th>Obrigatório</th> <th>Significado e relevância</th> </tr> </thead> <tbody> <tr><td>IDEQUIPAMENTO</td><td>integer</td><td>Sim (PK)</td><td>Identificador único do equipamento.</td></tr> <tr><td>NMEQUIPAMENTO</td><td>varchar(120)</td><td>Sim*</td><td>Nome do equipamento utilizado na academia.</td></tr> <tr><td>DSDESCRICAO</td><td>varchar(255)</td><td>Não</td><td>Detalhes ou características do equipamento.</td></tr> <tr><td>QTQUANTIDADE</td><td>integer</td><td>Sim</td><td>Quantidade disponível daquele equipamento.</td></tr> <tr><td>TP_STATUS</td><td>varchar(30)</td><td>Sim*</td><td>Situação atual do equipamento, como ativo, em manutenção ou inativo.</td></tr> </tbody> </table>
+ ID_MATRICULA                        integer          Sim (FK)      Matrícula que gerou a cobrança
 
-<div class="index-info"> <strong>Índices:</strong> PK IDEQUIPAMENTO; FK IDFORNECEDOR → FORNECEDOR(IDFORNECEDOR); índice em IDFORNECEDOR. </div> </article>
+ VR_VALOR                            decimal(10,2)    Sim*          Valor cobrado
 
-<!-- MANUTENCAO --> <article> <h3>MANUTENCAO</h3>
+ DT_VENCIMENTO                       date             Sim*          Data de vencimento
 
-<div class="formula"> MANUTENCAO = @IDMANUTENCAO + IDEQUIPAMENTO + DTMANUTENCAO + TPTIPOMANUTENCAO + (DSDESCRICAO) + VRCUSTO + TPSTATUS </div>
+ TP_STATUS_PAGAMENTO                 varchar(30)      Sim*          Situação: pendente, pago ou atrasado
 
-<p class="reading"> <strong>Leitura:</strong> Registra cada manutenção realizada ou programada para um equipamento. A relação com EQUIPAMENTO permite manter o histórico de manutenção e controlar a próxima intervenção. </p>
+Índices: PK ID_PAGAMENTO; FK ID_MATRICULA referencia MATRICULA(ID_MATRICULA); índice em
+ID_MATRICULA; índice em (DT_VENCIMENTO, TP_STATUS_PAGAMENTO).
 
-<table> <thead> <tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Significado e relevância</th></tr> </thead> <tbody> <tr><td>IDMANUTENCAO</td><td>integer</td><td>Sim (PK)</td><td>Identificador único da manutenção.</td></tr> <tr><td>IDEQUIPAMENTO</td><td>integer</td><td>Sim*</td><td>Equipamento ao qual a manutenção está relacionada.</td></tr> <tr><td>DTMANUTENCAO</td><td>date</td><td>Sim</td><td>Data de realização ou registro da manutenção.</td></tr> <tr><td>TPMANUTENCAO</td><td>varchar(60)</td><td>Sim</td><td>Classificação do tipo de manutenção.</td></tr> <tr><td>VRCUSTO</td><td>decimal(10,2)</td><td>Sim</td><td>Custo associado à manutenção.</td></tr> <tr><td>TP_STATUS</td><td>varchar(30)</td><td>Sim*</td><td>Situação da manutenção, como concluída, pendente ou programada.</td></tr> </tbody> </table>
+ACESSO = @ID_ACESSO + ID_MATRICULA + DT_HORA_ENTRADA
+Leitura: Registro de cada entrada de um aluno na academia, vinculada à matrícula.
 
-<div class="index-info"> <strong>Índices:</strong> PK IDMANUTENCAO; FK IDEQUIPAMENTO → EQUIPAMENTO(IDEQUIPAMENTO); índice em IDEQUIPAMENTO e DT_MANUTENCAO. </div> </article>
+ Atributo                            Tipo físico      Obrigatório   Significado e relevância
 
-<!-- PESSOA --> <article> <h3>PESSOA</h3>
+ ID_ACESSO                           integer          Sim (PK)      Identificador único do acesso
 
-<div class="formula"> PESSOA = @IDPESSOA + NMPESSOA + CDCPF + NMEMAIL + (DTNASCIMENTO) + (DSENDERECO) </div>
+ ID_MATRICULA                        integer          Sim (FK)      Matrícula que registrou a entrada
 
-<p class="reading"> <strong>Leitura:</strong> PESSOA funciona como cadastro-base para os perfis representados no DER, especialmente INSTRUTOR e ALUNO. Os dados de identificação são armazenados uma única vez e podem ser relacionados às especializações. </p>
+ DT_HORA_ENTRADA                     datetime         Sim*          Data e hora da entrada
 
-<table> <thead> <tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Significado e relevância</th></tr> </thead> <tbody> <tr><td>IDPESSOA</td><td>integer</td><td>Sim (PK)</td><td>Identificador único da pessoa.</td></tr> <tr><td>NMPESSOA</td><td>varchar(120)</td><td>Sim*</td><td>Nome da pessoa cadastrada.</td></tr> <tr><td>CDCPF</td><td>varchar(14)</td><td>Sim</td><td>CPF utilizado para identificação do cadastro.</td></tr> <tr><td>NMEMAIL</td><td>varchar(120)</td><td>Sim</td><td>E-mail de contato e identificação digital.</td></tr> <tr><td>DTNASCIMENTO</td><td>date</td><td>Não</td><td>Data de nascimento da pessoa.</td></tr> <tr><td>DS_ENDERECO</td><td>varchar(200)</td><td>Não*</td><td>Endereço informado no cadastro.</td></tr> </tbody> </table>
+Índices: PK ID_ACESSO; FK ID_MATRICULA referencia MATRICULA(ID_MATRICULA); índice em
+(ID_MATRICULA, DT_HORA_ENTRADA).</pre></section>
+<section class="page"><pre>Dicionário de Dados — Sistema de Gestão de Academia                                                          Página 4
+&lt;PARSED TEXT FOR PAGE: 5 / 9&gt;
+4.3 NÚCLEO DE TREINAMENTO
+TREINO = @ID_TREINO + ID_ALUNO + ID_INSTRUTOR + NM_TREINO + DT_INICIO + (DT_FIM)
+Leitura: TREINO montado por um instrutor para um aluno. DT_FIM é opcional porque o treino pode estar em
+andamento.
 
-<div class="index-info"> <strong>Índices:</strong> PK IDPESSOA; índice único sugerido em CDCPF; índice em NM_PESSOA para buscas. </div> </article>
+ Atributo                            Tipo físico      Obrigatório    Significado e relevância
 
-<!-- INSTRUTOR --> <article> <h3>INSTRUTOR</h3>
+ ID_TREINO                           integer          Sim (PK)       Identificador único do treino
 
-<div class="formula"> INSTRUTOR = @IDINSTRUTOR + IDPESSOA + CDCREF + (DSESPECIALIDADE) + DT_ADMISSAO </div>
+ ID_ALUNO                            integer          Sim (FK)       ALUNO que segue o treino
 
-<p class="reading"> <strong>Leitura:</strong> INSTRUTOR representa a especialização profissional de uma PESSOA. ID_PESSOA faz a ligação com o cadastro-base, enquanto CREF, especialidade e data de admissão caracterizam o vínculo profissional. </p>
+ ID_INSTRUTOR                        integer          Sim (FK)       INSTRUTOR que montou o treino
 
-<table> <thead> <tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Significado e relevância</th></tr> </thead> <tbody> <tr><td>CDCREF</td><td>varchar(30)</td><td>Sim</td><td>Registro profissional do instrutor no CREF.</td></tr> <tr><td>DSESPECIALIDADE</td><td>varchar(120)</td><td>Não</td><td>Área ou especialidade de atuação do instrutor.</td></tr> <tr><td>DT_ADMISSAO</td><td>date</td><td>Sim*</td><td>Data de admissão do instrutor na academia.</td></tr> </tbody> </table>
+ NM_TREINO                           varchar(120)     Sim*           Nome do treino
 
-<div class="index-info"> <strong>Índices:</strong> PK IDINSTRUTOR; FK IDPESSOA → PESSOA(IDPESSOA); índice único sugerido em CDCREF; índice em ID_PESSOA. </div> </article>
+ DT_INICIO                           date             Sim*           Início do treino
 
-<!-- ALUNO --> <article> <h3>ALUNO</h3>
+ DT_FIM                              date             Não*           Fim do treino; nulo se em andamento
 
-<div class="formula"> ALUNO = @IDALUNO + IDUSUARIO + IDPLANO + DTMATRICULA + (VRPESO) + (VRALTURA) </div>
+Índices: PK ID_TREINO; FK ID_ALUNO referencia ALUNO(ID_PESSOA); FK ID_INSTRUTOR referencia
+INSTRUTOR(ID_PESSOA); índices em ID_ALUNO e ID_INSTRUTOR.
 
-<p class="reading"> <strong>Leitura:</strong> ALUNO representa o perfil de aluno no sistema. IDUSUARIO é mantido com a mesma nomenclatura do DER e deve ser validado na implementação quanto à tabela de origem; IDPLANO relaciona o aluno ao plano contratado. </p>
+EXERCICIO = @ID_EXERCICIO + NM_EXERCICIO + TP_GRUPO_MUSCULAR + (DS_EXERCICIO)
+Leitura: Catálogo de exercícios usados na composição dos treinos.
 
-<table> <thead> <tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Significado e relevância</th></tr> </thead> <tbody> <tr><td>IDALUNO</td><td>integer</td><td>Sim (PK)</td><td>Identificador único do aluno.</td></tr> <tr><td>IDPLANO</td><td>integer</td><td>Sim*</td><td>Plano associado ao aluno.</td></tr> <tr><td>DTMATRICULA</td><td>date</td><td>Sim</td><td>Data de matrícula do aluno.</td></tr> <tr><td>DSOBJETIVO</td><td>varchar(255)</td><td>Não</td><td>Objetivo informado pelo aluno para seu acompanhamento.</td></tr> <tr><td>VRPESO</td><td>decimal(6,2)</td><td>Não</td><td>Peso registrado do aluno, quando informado.</td></tr> <tr><td>VR_ALTURA</td><td>decimal(5,2)</td><td>Não*</td><td>Altura registrada do aluno, quando informada.</td></tr> </tbody> </table>
+ Atributo                            Tipo físico      Obrigatório    Significado e relevância
 
-<div class="index-info"> <strong>Índices:</strong> PK IDALUNO; FK IDPLANO → PLANO(IDPLANO); índice em IDPLANO. A FK de ID_USUARIO deve ser definida conforme a tabela correspondente ao usuário. </div> </article>
+ ID_EXERCICIO                        integer          Sim (PK)       Identificador único do exercício
 
-<!-- PLANO --> <article> <h3>PLANO</h3>
+ NM_EXERCICIO                        varchar(120)     Sim*           Nome do exercício
 
-<div class="formula"> PLANO = @IDPLANO + NMPLANO + VRVALOR + QTDURACAOMESES + TPSTATUS </div>
+ TP_GRUPO_MUSCULAR                   varchar(80)      Sim*           Grupo muscular trabalhado
 
-<p class="reading"> <strong>Leitura:</strong> Representa os planos disponibilizados pela academia. Cada plano possui identificação, nome, valor, duração e situação de disponibilidade. </p>
+ DS_EXERCICIO                        varchar(255)     Não*           Descrição e orientação de execução
 
-<table> <thead> <tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Significado e relevância</th></tr> </thead> <tbody> <tr><td>IDPLANO</td><td>integer</td><td>Sim (PK)</td><td>Identificador único do plano.</td></tr> <tr><td>NMPLANO</td><td>varchar(120)</td><td>Sim*</td><td>Nome comercial do plano.</td></tr> <tr><td>VRVALOR</td><td>decimal(10,2)</td><td>Sim</td><td>Valor monetário do plano.</td></tr> <tr><td>QTDURACAOMESES</td><td>integer</td><td>Sim*</td><td>Duração do plano em meses.</td></tr> </tbody> </table>
+Índices: PK ID_EXERCICIO; índice em (TP_GRUPO_MUSCULAR, NM_EXERCICIO).
 
-<div class="index-info"> <strong>Índices:</strong> PK IDPLANO; índice em TPSTATUS para consulta de planos ativos. </div> </article>
+TREINO_EXERCICIO = @ID_TREINO + @ID_EXERCICIO + QT_SERIES + QT_REPETICOES + (VR_CARGA) +
+QT_INTERVALO_SEG
+Leitura: Entidade associativa entre TREINO e Exercício. Define como cada exercício é executado dentro de
+um treino.
 
-<!-- PAGAMENTO --> <article> <h3>PAGAMENTO</h3>
+ Atributo                            Tipo físico      Obrigatório    Significado e relevância
 
-<div class="formula"> PAGAMENTO = @IDPAGAMENTO + IDALUNO + VRPAGAMENTO + DTVENCIMENTO + (DTPAGAMENTO) + TPSTATUS_PAGAMENTO </div>
+ ID_TREINO                           integer          Sim (PK, FK)   TREINO ao qual o exercício pertence
 
-<p class="reading"> <strong>Leitura:</strong> Registra os pagamentos associados aos alunos ativos. A data de pagamento é opcional para permitir o registro de cobranças ainda não quitadas; o nome IDALUNOATIVO é mantido conforme aparece no DER. </p>
+ ID_EXERCICIO                        integer          Sim (PK, FK)   Exercício prescrito
 
-<table> <thead> <tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Significado e relevância</th></tr> </thead> <tbody> <tr><td>IDPAGAMENTO</td><td>integer</td><td>Sim (PK)</td><td>Identificador único do pagamento.</td></tr> <tr><td>VRVALOR</td><td>decimal(10,2)</td><td>Sim*</td><td>Valor monetário cobrado ou pago.</td></tr> <tr><td>DTVENCIMENTO</td><td>date</td><td>Sim</td><td>Data de vencimento da cobrança.</td></tr> <tr><td>DTPAGAMENTO</td><td>date</td><td>Não</td><td>Data em que o pagamento foi efetivamente realizado.</td></tr> <tr><td>TPSTATUSPAGAMENTO</td><td>varchar(30)</td><td>Sim*</td><td>Situação do pagamento, como pendente, pago ou atrasado.</td></tr> </tbody> </table>
+ QT_SERIES                           integer          Sim*           Número de séries
 
-<div class="index-info"> <strong>Índices:</strong> PK IDPAGAMENTO; índice em IDALUNOATIVO; índice em DTVENCIMENTO e TPSTATUSPAGAMENTO. FK deve apontar para o identificador do aluno ativo conforme implementação. </div> </article>
+ QT_REPETICOES                       integer          Sim*           Repetições por série
 
-<!-- TREINO --> <article> <h3>TREINO</h3>
+ VR_CARGA                            decimal(8,2)     Não*           Carga, em kg, quando aplicável
 
-<div class="formula"> TREINO = @IDTREINO + NMTREINO + DTINICIO + (DTFIM) </div>
+ QT_INTERVALO_SEG                    integer          Sim*           Intervalo entre séries, em segundos
 
-<p class="reading"> <strong>Leitura:</strong> Representa um treino planejado para um aluno ativo e associado a um instrutor. DT_FIM é opcional porque um treino pode permanecer em andamento. </p>
+Índices: PK composta (ID_TREINO, ID_EXERCICIO); FKs para TREINO e EXERCICIO; índice em
+ID_EXERCICIO.</pre></section>
+<section class="page"><pre>Dicionário de Dados — Sistema de Gestão de Academia                                                        Página 5
+&lt;PARSED TEXT FOR PAGE: 6 / 9&gt;
+AVALIACAO_FISICA = @ID_AVALIACAO + ID_ALUNO + DT_AVALIACAO + VR_PESO + VR_ALTURA
+Leitura: Histórico de avaliações físicas de um aluno. Contém dado de saúde (ver seção LGPD).
 
-<table> <thead> <tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Significado e relevância</th></tr> </thead> <tbody> <tr><td>IDTREINO</td><td>integer</td><td>Sim (PK)</td><td>Identificador único do treino.</td></tr> <tr><td>NMTREINO</td><td>varchar(120)</td><td>Sim*</td><td>Nome ou identificação do treino.</td></tr> <tr><td>DTINICIO</td><td>date</td><td>Sim</td><td>Data de início do treino.</td></tr> <tr><td>DT_FIM</td><td>date</td><td>Não*</td><td>Data de encerramento ou substituição do treino.</td></tr> </tbody> </table>
+ Atributo                            Tipo físico      Obrigatório   Significado e relevância
 
-<div class="index-info"> <strong>Índices:</strong> PK IDTREINO; FKs para aluno ativo e INSTRUTOR; índices em IDALUNOATIVO e IDINSTRUTOR. </div> </article>
+ ID_AVALIACAO                        integer          Sim (PK)      Identificador único da avaliação
 
-<!-- EXERCICIO --> <article> <h3>EXERCICIO</h3>
+ ID_ALUNO                            integer          Sim (FK)      ALUNO avaliado
 
-<div class="formula"> EXERCICIO = @IDEXERCICIO + NMEXERCICIO + (DSDESCRICAO) + TPGRUPO_MUSCULAR </div>
+ DT_AVALIACAO                        date             Sim*          Data da avaliação
 
-<p class="reading"> <strong>Leitura:</strong> É o catálogo de exercícios disponíveis para composição dos treinos. O exercício pode ser associado a vários treinos por meio da entidade associativa TREINO_EXERCICIO. </p>
+ VR_PESO                             decimal(6,2)     Sim*          Peso medido, em kg
 
-<table> <thead> <tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Significado e relevância</th></tr> </thead> <tbody> <tr><td>IDEXERCICIO</td><td>integer</td><td>Sim (PK)</td><td>Identificador único do exercício.</td></tr> <tr><td>NMEXERCICIO</td><td>varchar(120)</td><td>Sim*</td><td>Nome do exercício.</td></tr> <tr><td>DSDECLARACAO</td><td>varchar(255)</td><td>Não</td><td>Descrição ou orientação geral do exercício.</td></tr> <tr><td>TPGRUPOMUSCULAR</td><td>varchar(80)</td><td>Sim*</td><td>Grupo muscular trabalhado pelo exercício.</td></tr> </tbody> </table>
+ VR_ALTURA                           decimal(5,2)     Sim*          Altura medida, em metros
 
-<div class="index-info"> <strong>Índices:</strong> PK IDEXERCICIO; índice em TPGRUPOMUSCULAR e NMEXERCICIO para consulta do catálogo. </div> </article>
+Índices: PK ID_AVALIACAO; FK ID_ALUNO referencia ALUNO(ID_PESSOA); índice em (ID_ALUNO,
+DT_AVALIACAO).
 
-<!-- TREINOEXERCICIO --> <article> <h3>TREINOEXERCICIO</h3>
 
-<div class="formula"> TREINOEXERCICIO = @IDTREINO + IDTREINO + IDEXERCICIO + QTSERIES + QTREPETICOES </div>
+4.4 NÚCLEO DE LOGÍSTICA E FINANCEIRO
+FORNECEDOR = @ID_FORNECEDOR + NM_FORNECEDOR + CD_CNPJ + (NM_EMAIL)
+Leitura: Empresas que fornecem equipamentos e itens de estoque e que geram contas a pagar.
 
-<p class="reading"> <strong>Leitura:</strong> É a entidade associativa entre TREINO e EXERCICIO. Cada registro define como determinado exercício será executado dentro de um treino, incluindo séries, repetições, carga e intervalo. </p>
+ Atributo                            Tipo físico      Obrigatório   Significado e relevância
 
-<table> <thead> <tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Significado e relevância</th></tr> </thead> <tbody> <tr><td>IDTREINO</td><td>integer</td><td>Sim (PK)</td><td>Identificador único da associação.</td></tr> <tr><td>IDEXERCICIO</td><td>integer</td><td>Sim*</td><td>Exercício associado ao treino.</td></tr> <tr><td>QTSERIES</td><td>integer</td><td>Sim</td><td>Quantidade de séries prescritas.</td></tr> <tr><td>QT_REPETICOES</td><td>integer</td><td>Sim*</td><td>Quantidade de repetições por série.</td></tr> </tbody> </table>
+ ID_FORNECEDOR                       integer          Sim (PK)      Identificador único do fornecedor
 
-<div class="index-info"> <strong>Índices:</strong> PK IDTREINOEXERCICIO; FKs para TREINO e EXERCICIO; índice composto em (IDTREINO, IDEXERCICIO). </div> </article>
+ NM_FORNECEDOR                       varchar(120)     Sim*          Nome ou razão social
 
-<!-- AVALIACAO FISICA --> <article> <h3>AVALIACAO_FISICA</h3>
+ CD_CNPJ                             varchar(18)      Sim*          CNPJ do fornecedor
 
-<div class="formula"> AVALIACAOFISICA = @IDAVALIACAO + DTAVALIACAO + VRPESO + VRALTURA </div>
+ NM_EMAIL                            varchar(120)     Não*          E-mail de contato
 
-<p class="reading"> <strong>Leitura:</strong> Registra avaliações físicas de alunos ativos realizadas por instrutores. Os campos de medidas são mantidos como dados da avaliação e permitem acompanhar a evolução física ao longo do tempo. </p>
+Índices: PK ID_FORNECEDOR; índice único em CD_CNPJ.
 
-<table> <thead> <tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Significado e relevância</th></tr> </thead> <tbody> <tr><td>IDAVALIACAO</td><td>integer</td><td>Sim (PK)</td><td>Identificador único da avaliação física.</td></tr> <tr><td>DTAVALIACAO</td><td>date</td><td>Sim*</td><td>Data da realização da avaliação.</td></tr> <tr><td>VRPESO</td><td>decimal(6,2)</td><td>Sim</td><td>Peso medido na avaliação.</td></tr> <tr><td>VR_ALTURA</td><td>decimal(5,2)</td><td>Sim*</td><td>Altura registrada na avaliação.</td></tr> </tbody> </table>
+EQUIPAMENTO = @ID_EQUIPAMENTO + ID_FORNECEDOR + NM_EQUIPAMENTO + QT_QUANTIDADE + TP_STATUS
+Leitura: Equipamentos pertencentes à academia, cada um com seu fornecedor.
 
-<div class="index-info"> <strong>Índices:</strong> PK IDAVALIACAO; FKs para aluno ativo e INSTRUTOR; índices em IDALUNOATIVO e DTAVALIACAO. </div> </article> </section>
+ Atributo                            Tipo físico      Obrigatório   Significado e relevância
 
-<section id="log-acesso"> <h2>5. LOG DE ACESSO (METADADO OPERACIONAL)</h2>
+ ID_EQUIPAMENTO                      integer          Sim (PK)      Identificador único do equipamento
 
-<p> O DER não apresenta uma tabela específica de log de acesso. Para a implementação, recomenda-se que as operações realizadas sobre dados cadastrais, financeiros e de avaliação física sejam submetidas a auditoria do SGBD ou a um mecanismo próprio de trilha de auditoria. O log deve registrar, conforme a política adotada, usuário responsável, data/hora, operação realizada e objeto afetado. A retenção dos logs deve ser definida separadamente da retenção dos dados de negócio. </p> </section>
+ ID_FORNECEDOR                       integer          Sim (FK)      FORNECEDOR do equipamento
 
-<section id="lgpd"> <h2>6. ACESSO POR OPERAÇÃO E CONFORMIDADE COM A LGPD</h2>
+ NM_EQUIPAMENTO                      varchar(120)     Sim*          Nome do equipamento
 
-<table class="access-table"> <thead> <tr> <th>Tabela</th> <th>LER</th> <th>INSERIR</th> <th>ATUALIZAR</th> <th>APAGAR</th> </tr> </thead> <tbody> <tr> <td>PESSOA</td> <td>Administrativo autorizado</td> <td>Administrativo autorizado</td> <td>Administrativo autorizado</td> <td>Restrito; preferir inativação</td> </tr> <tr> <td>INSTRUTOR</td> <td>Administrativo / gestão</td> <td>Administrativo / gestão</td> <td>Administrativo / gestão</td> <td>Restrito</td> </tr> <tr> <td>ALUNO</td> <td>Administrativo / gestão / instrutor autorizado</td> <td>Administrativo / gestão</td> <td>Administrativo / gestão</td> <td>Restrito</td> </tr> <tr> <td>TELEFONE</td> <td>Administrativo autorizado</td> <td>Administrativo autorizado</td> <td>Administrativo autorizado</td> <td>Restrito</td> </tr> <tr> <td>PLANO</td> <td>Gestão</td> <td>Gestão</td> <td>Gestão</td> <td>Restrito</td> </tr> <tr> <td>PAGAMENTO</td> <td>Financeiro / gestão</td> <td>Financeiro / gestão</td> <td>Financeiro / gestão</td> <td>Restrito</td> </tr> <tr> <td>TREINO</td> <td>Instrutor autorizado / gestão</td> <td>Instrutor</td> <td>Instrutor</td> <td>Restrito</td> </tr> <tr> <td>EXERCICIO</td> <td>Instrutor / gestão</td> <td>Gestão / instrutor autorizado</td> <td>Gestão / instrutor autorizado</td> <td>Restrito</td> </tr> <tr> <td>TREINO</td> <td>Instrutor autorizado</td> <td>Instrutor</td> <td>Instrutor</td> <td>Restrito</td> </tr> <tr> <td>AVALIACAO_FISICA</td> <td>Instrutor autorizado / gestão</td> <td>Instrutor autorizado</td> <td>Instrutor autorizado</td> <td>Restrito</td> </tr> <tr> <td>FORNECEDOR</td> <td>Gestão</td> <td>Gestão</td> <td>Gestão</td> <td>Gestão autorizada</td> </tr> <tr> <td>EQUIPAMENTO</td> <td>Gestão / manutenção</td> <td>Gestão</td> <td>Gestão / manutenção</td> <td>Gestão autorizada</td> </tr> <tr> <td>MANUTENCAO</td> <td>Gestão / manutenção</td> <td>Gestão / manutenção</td> <td>Gestão / manutenção</td> <td>Restrito</td> </tr> <tr> <td>ESTOQUE</td> <td>Gestão / estoque</td> <td>Gestão / estoque</td> <td>Gestão / estoque</td> <td>Gestão autorizada</td> </tr> </tbody> </table>
+ QT_QUANTIDADE                       integer          Sim*          Quantidade disponível
 
-<h3>Dados pessoais</h3>
+ TP_STATUS                           varchar(30)      Sim*          Situação: ativo, em manutenção ou inativo
 
-<p> PESSOA contém identificadores como nome, CPF, e-mail, nascimento e endereço. Esses dados devem ter acesso limitado à finalidade do sistema e aos perfis autorizados. </p>
+Índices: PK ID_EQUIPAMENTO; FK ID_FORNECEDOR referencia FORNECEDOR(ID_FORNECEDOR);
+índice em ID_FORNECEDOR.</pre></section>
+<section class="page"><pre>Dicionário de Dados — Sistema de Gestão de Academia                                                             Página 6
+&lt;PARSED TEXT FOR PAGE: 7 / 9&gt;
+MANUTENCAO = @ID_MANUTENCAO + ID_EQUIPAMENTO + DT_MANUTENCAO + VR_CUSTO + TP_STATUS
+Leitura: Histórico de manutenções de um equipamento.
 
-<h3>Dados relacionados à saúde/condição física</h3>
+ Atributo                            Tipo físico      Obrigatório   Significado e relevância
 
-<p> ALUNO e, principalmente, AVALIACAO_FISICA armazenam informações como peso, altura, percentual de gordura e IMC. Esses dados exigem tratamento cuidadoso, controle de acesso e uso compatível com a finalidade informada ao titular. </p>
+ ID_MANUTENCAO                       integer          Sim (PK)      Identificador único da manutenção
 
-<h3>Medidas administrativas sugeridas</h3>
+ ID_EQUIPAMENTO                      integer          Sim (FK)      EQUIPAMENTO que recebeu a manutenção
 
-<p> Coletar apenas os dados necessários; restringir acesso por função; manter registros de auditoria; proteger dados em trânsito e em repouso; estabelecer prazos de retenção conforme a finalidade e as obrigações aplicáveis; e, quando não houver mais necessidade de identificação, avaliar anonimização ou eliminação de acordo com a política institucional e a legislação aplicável. </p>
+ DT_MANUTENCAO                       date             Sim*          Data da manutenção
 
-<div class="notice"> <strong>Importante:</strong> as regras de acesso, retenção e classificação acima são recomendações de documentação e não estão todas explicitamente representadas no DER. Devem ser validadas com os responsáveis pelo sistema antes da implementação. </div> </section>
+ VR_CUSTO                            decimal(10,2)    Sim*          Custo, em reais
 
-<footer> Dicionário de Dados — Sistema de Gestão de Academia · Versão v1.0 · 14/setembro/2026 </footer>
+ TP_STATUS                           varchar(30)      Sim*          Situação: pendente, programada ou concluída
 
-</div> </body> </html>
+Índices: PK ID_MANUTENCAO; FK ID_EQUIPAMENTO referencia EQUIPAMENTO(ID_EQUIPAMENTO);
+índice em (ID_EQUIPAMENTO, DT_MANUTENCAO).
+
+ESTOQUE = @ID_ITEM + ID_FORNECEDOR + NM_ITEM + TP_CATEGORIA + QT_QUANTIDADE + QT_MINIMA
+Leitura: Itens controlados em estoque. QT_MINIMA serve de referência para reposição.
+
+ Atributo                            Tipo físico      Obrigatório   Significado e relevância
+
+ ID_ITEM                             integer          Sim (PK)      Identificador único do item
+
+ ID_FORNECEDOR                       integer          Sim (FK)      FORNECEDOR do item
+
+ NM_ITEM                             varchar(120)     Sim*          Nome do item
+
+ TP_CATEGORIA                        varchar(60)      Sim*          Categoria do item
+
+ QT_QUANTIDADE                       integer          Sim*          Quantidade em estoque
+
+ QT_MINIMA                           integer          Sim*          Quantidade mínima para reposição
+
+Índices: PK ID_ITEM; FK ID_FORNECEDOR referencia FORNECEDOR(ID_FORNECEDOR); índice em
+(ID_FORNECEDOR, TP_CATEGORIA).
+
+CONTAS_A_PAGAR = @ID_CONTA_PAGAR + ID_FORNECEDOR + DS_CONTA + VR_VALOR + DT_VENCIMENTO +
+(DT_PAGAMENTO) + TP_STATUS_PAGAMENTO
+Leitura: Contas a pagar da academia a fornecedores. DT_PAGAMENTO é nula enquanto a conta está em
+aberto.
+
+ Atributo                            Tipo físico      Obrigatório   Significado e relevância
+
+ ID_CONTA_PAGAR                      integer          Sim (PK)      Identificador único da conta
+
+ ID_FORNECEDOR                       integer          Sim (FK)      FORNECEDOR credor
+
+ DS_CONTA                            varchar(255)     Sim*          Descrição da conta
+
+ VR_VALOR                            decimal(10,2)    Sim*          Valor a pagar
+
+ DT_VENCIMENTO                       date             Sim*          Data de vencimento
+
+ DT_PAGAMENTO                        date             Não*          Data do pagamento; nula se em aberto
+
+ TP_STATUS_PAGAMENTO                 varchar(30)      Sim*          Situação: pendente, pago ou atrasado
+
+Índices: PK ID_CONTA_PAGAR; FK ID_FORNECEDOR referencia FORNECEDOR(ID_FORNECEDOR);
+índice em (DT_VENCIMENTO, TP_STATUS_PAGAMENTO).</pre></section>
+<section class="page"><pre>Dicionário de Dados — Sistema de Gestão de Academia                                                        Página 7
+&lt;PARSED TEXT FOR PAGE: 8 / 9&gt;
+5. LOG E AUDITORIA
+Recomenda-se auditar as operações sobre dados cadastrais, financeiros e de avaliação física, pelo próprio
+SGBD ou por uma trilha de auditoria. O log deve registrar usuário, data e hora, operação e objeto afetado. O
+prazo de retenção dos logs deve ser definido separadamente do prazo dos dados de negócio. A tabela
+ACESSO registra a entrada de alunos e não substitui o log de auditoria.
+
+6. ACESSO POR OPERAÇÃO E CONFORMIDADE COM A LGPD
+ Entidade                    Ler                         Inserir                Atualizar              Apagar
+
+                                                         Administrativo         Administrativo         Restrito; preferir
+ PESSOA                      Administrativo autorizado
+                                                         autorizado             autorizado             inativação
+
+                                                         Administrativo         Administrativo
+ TELEFONE                    Administrativo autorizado                                                 Restrito
+                                                         autorizado             autorizado
+
+                                                         Administrativo /       Administrativo /
+ INSTRUTOR                   Administrativo / gestão                                                   Restrito
+                                                         gestão                 gestão
+
+                             Administrativo / gestão /   Administrativo /       Administrativo /
+ ALUNO                                                                                                 Restrito
+                             instrutor autorizado        gestão                 gestão
+
+ PLANO                       Gestão                      Gestão                 Gestão                 Restrito
+
+                                                         Administrativo /       Administrativo /
+ MATRICULA                   Administrativo / gestão                                                   Restrito
+                                                         gestão                 gestão
+
+ PAGAMENTO                   Financeiro / gestão         Financeiro / gestão    Financeiro / gestão    Restrito
+
+                                                         Sistema de controle
+ ACESSO                      Administrativo / gestão                            Restrito               Restrito
+                                                         de acesso
+
+                             Instrutor autorizado /
+ TREINO                                                  Instrutor              Instrutor              Restrito
+                             gestão
+
+                                                         Gestão / instrutor     Gestão / instrutor
+ EXERCICIO                   Instrutor / gestão                                                        Restrito
+                                                         autorizado             autorizado
+
+ TREINO_EXERCICIO            Instrutor autorizado        Instrutor              Instrutor              Restrito
+
+                             Instrutor autorizado /
+ AVALIACAO_FISICA                                        Instrutor autorizado   Instrutor autorizado   Restrito
+                             gestão
+
+ FORNECEDOR                  Gestão                      Gestão                 Gestão                 Gestão autorizada
+
+ EQUIPAMENTO                 Gestão / manutenção         Gestão                 Gestão / manutenção    Gestão autorizada
+
+ MANUTENCAO                  Gestão / manutenção         Gestão / manutenção    Gestão / manutenção    Restrito
+
+ ESTOQUE                     Gestão / estoque            Gestão / estoque       Gestão / estoque       Gestão autorizada
+
+ CONTAS_A_PAGAR              Financeiro / gestão         Financeiro / gestão    Financeiro / gestão    Restrito
+
+Dados pessoais: PESSOA e TELEFONE contêm nome, CPF, e-mail e telefone. O acesso deve se limitar à
+finalidade do sistema e aos perfis autorizados.
+Dados de saúde e condição física: ALUNO (peso e altura) e, principalmente, AVALIACAO_FISICA exigem
+controle de acesso reforçado e uso compatível com a finalidade informada ao titular.
+Medidas sugeridas: coletar apenas os dados necessários; restringir o acesso por função; manter trilha de
+auditoria; proteger os dados em trânsito e em repouso; definir prazos de retenção; e, quando a identificação
+não for mais necessária, avaliar anonimização ou eliminação conforme a política da academia e a
+legislação.</pre></section>
+<section class="page"><pre>Dicionário de Dados — Sistema de Gestão de Academia                                                                 Página 8
+&lt;PARSED TEXT FOR PAGE: 9 / 9&gt;
+7. PONTOS DE VALIDAÇÃO ANTES DA IMPLEMENTAÇÃO
+• Confirmar a obrigatoriedade (nulidade) proposta para cada atributo marcado com *.
+• Definir a lista oficial de valores dos atributos TP_STATUS, TP_TELEFONE e TP_STATUS_PAGAMENTO.
+• Decidir se ALUNO mantém VR_PESO e VR_ALTURA, já que AVALIACAO_FISICA guarda o histórico de
+medidas.
+• Confirmar que FORNECEDOR possui chave própria e não é especialização de PESSOA.
+• Decidir se CONTAS_A_PAGAR precisa de FK opcional para despesas sem fornecedor (salários, aluguel).
+• Atributos adicionais (data de nascimento, endereço, IMC) devem ser incluídos antes no DER conceitual.</pre></section>
+<section class="page"><pre>Dicionário de Dados — Sistema de Gestão de Academia                                                Página 9</pre></section></main></body></html>

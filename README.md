@@ -1,4 +1,26 @@
+## Entrega 2 — Atualização da modelagem e documentação
+
+Esta versão reúne a documentação revisada do sistema ARGOS FITNESS. O conteúdo da Entrega 1 permanece abaixo como histórico do levantamento e da definição inicial do projeto.
+
+### Documentos atualizados
+
+- **Dicionário de Dados v2.0 (HTML):** [abrir dicionário](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
+- **Levantamento complementar:** [abrir levantamento](levantamento/Levantamento.md)
+- **DER conceitual:** [abrir modelo conceitual no BRModelo Web](https://app.brmodeloweb.com/conceptual/6abe472cc331589fb9e371a9)
+- **Modelo lógico:** arquivo de diagrama a ser anexado nesta pasta após a exportação da imagem/PDF atualizada.
+- **Script SQL:** pendente de inclusão; será adicionado após a finalização do script.
+
+### Escopo documentado nesta atualização
+
+O modelo contempla cadastro de pessoas, perfis de aluno e instrutor, telefones, matrículas, planos, pagamentos, acessos, treinos, exercícios, avaliações físicas, fornecedores, equipamentos, manutenção e contas a pagar. O dicionário v2.0 documenta atributos, tipos físicos, obrigatoriedade proposta, chaves e índices.
+
+> **Nota de versão:** o script SQL ainda não foi disponibilizado nesta atualização. As regras de nulidade marcadas com asterisco no dicionário são propostas e precisam ser validadas antes da implementação física.
+
+---
+
 # ARGOS FITNESS — Sistema de Gestão de Academia
+
+## Entrega 1 — Relatório técnico e levantamento inicial
  
 ## Entrega 1 — Modelo Conceitual (DER)
  
