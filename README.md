@@ -17,7 +17,6 @@ O projeto tem como objetivo levantar os processos da organização, identificar 
 | Paulo Henrique Quintiliano dos Santos | 48179060 |
 | Beatrys Anunciato de Lima | 48219886 |
 | Kauanny Duarte Santos | 48164143 |
-| João Lucas da Conceição Pereira | 47617322 |
  
 ---
  
