@@ -8,7 +8,7 @@ Esta versão reúne os documentos revisados do sistema ARGOS FITNESS.
 - **Modelo lógico revisado:** [Modelo_Logico.png](docs/diagramas/Modelo_Logico.png)
 - **Dicionário de Dados v2.0 (HTML):** [abrir dicionário](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
 - **Levantamento:** [abrir levantamento](levantamento/Levantamento.md)
-- **Script SQL:** pendente de inclusão após a finalização do script.                           
+- **Script SQL:** pendente de inclusão após a finalização do script.                            
 
 O modelo documenta pessoas, alunos, instrutores, telefones, matrículas, planos, pagamentos, acessos, treinos, exercícios, avaliações físicas, fornecedores, equipamentos, manutenção e contas a pagar. A entidade ESTOQUE não faz parte desta versão.
                                                     
@@ -248,7 +248,7 @@ Versão em HTML: [Dicionário de Dados — ARGOS FITNESS](https://beatrys0111.gi
 | vr_valor | Valor monetário do plano | Obrigatório; planos praticados entre R$ 90,00 e R$ 150,00 |
 | qt_duracao_meses | Duração do plano em meses | Obrigatório; maior que zero |
  
-### Entidade: Matrícula
+### Entidade: Matrícula 
  
 | Atributo | Descrição | Regra de negócio associada |
 | :--- | :--- | :--- |
@@ -292,7 +292,7 @@ Versão em HTML: [Dicionário de Dados — ARGOS FITNESS](https://beatrys0111.gi
 | ds_declaracao | Descrição ou orientação geral do exercício | Opcional |
  
 ### Entidade: Avaliação Física
- 
+     
 | Atributo | Descrição | Regra de negócio associada |
 | :--- | :--- | :--- |
 | id_avaliacao (PK) | Identificador único da avaliação física | Obrigatório; gerado pelo sistema |
