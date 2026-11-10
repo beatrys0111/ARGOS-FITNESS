@@ -1,478 +1,349 @@
-## Entrega 2 — Atualização da modelagem e documentação
 
-Esta versão reúne os documentos revisados do sistema ARGOS FITNESS.
-                                                                                           
-### Documentos atualizados     
+# Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
 
-- **DER conceitual revisado:** [DER_Conceitual.pdf](docs/diagramas/DER_Conceitual.pdf)
-- **Modelo lógico revisado:** [Modelo_Logico.png](docs/diagramas/Modelo_Logico.png)
-- **Dicionário de Dados v2.0 (HTML):** [abrir dicionário](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
-- **Levantamento:** [abrir levantamento](levantamento/Levantamento.md)
-- **Script SQL:** pendente de inclusão após a finalização do script.                            
-
-O modelo documenta pessoas, alunos, instrutores, telefones, matrículas, planos, pagamentos, acessos, treinos, exercícios, avaliações físicas, fornecedores, equipamentos, manutenção e contas a pagar. A entidade ESTOQUE não faz parte desta versão.
-                                                    
+### Modelagem de um sistema de gestão de informações para a ARGOS FITNESS ACADEMIA
 
 ---
 
-# ARGOS FITNESS — Sistema de Gestão de Academia
+## 1. Relatório Técnico Final
 
-## Entrega 1 — Relatório técnico e levantamento inicial
- 
-## Entrega 1 — Modelo Conceitual (DER)
- 
-Projeto acadêmico de modelagem de dados desenvolvido para a **ARGOS FITNESS**, uma academia de bairro localizada em Itaquera, São Paulo.
- 
-O projeto tem como objetivo levantar os processos da organização, identificar seus requisitos e representar seus principais dados por meio de uma **modelagem conceitual de banco de dados**, utilizando um Diagrama Entidade-Relacionamento (DER).
- 
----
- 
-## Metadados
- 
 ### Integrantes
- 
-| Nome | RGM |
-| :--- | :---: |
-| Paulo Henrique Quintiliano dos Santos | 48179060 |
-| Beatrys Anunciato de Lima | 48219886 |
-| Kauanny Duarte Santos | 48164143 |
- 
+
+| Nome completo do aluno | RGM | Usuário do GitHub |
+| :---- | :---- | :---- |
+| Beatrys Anunciato | RGM 48219886 | [beatrys0111](https://github.com/beatrys0111) |
+| Kauanny Duarte Santos | RGM 48164143 | [kauannyduartesantos](https://github.com/kauannyduartesantos) |
+| Paulo Henrique Quintiliano | RGM 48179060 | [peaga19](https://github.com/peaga19) |
+
 ---
- 
-## 1. Caracterização da Organização
- 
-### Nome e natureza da organização
- 
-A organização selecionada para a pesquisa de campo foi a **ARGOS FITNESS**, uma academia de bairro voltada a atividades físicas e condicionamento corporal. Ela foi escolhida como objeto de estudo para o desenvolvimento do projeto de Banco de Dados. A pesquisa de campo teve como objetivo conhecer o funcionamento da academia, observar seus processos e levantar informações relevantes para a definição dos requisitos do banco de dados a ser desenvolvido.
- 
-### Contexto e porte
- 
-A **ARGOS FITNESS** é uma academia de bairro com fins lucrativos, que oferece serviços voltados à prática de atividades físicas.
- 
-- **Alunos:** mais de **300**
-- **Colaboradores:** aproximadamente **25**, distribuídos entre recepção, limpeza, manutenção de equipamentos e instrução de atividades físicas
-- **Equipe de instrução:** professores de lutas, dança, aeróbica e personal trainers
-- **Modalidades:** dança, boxe, treinamento funcional, taekwondo, pilates e muay thai
-- **Receita:** mensalidades e aulas avulsas
-- **Funcionamento:** de **segunda-feira a sábado**
-- **Demanda média:** aproximadamente **250 mensalidades mensais**
-- **Valor dos planos:** entre **R$ 90,00 e R$ 150,00**, conforme os serviços e modalidades oferecidos
-### Problemas e necessidades identificados
- 
-Foram identificadas algumas limitações no gerenciamento e na organização das informações da academia:
- 
-- O processo atual é muito simples, concentrando-se no **registro da matrícula, identificação do aluno e controle das datas de pagamento das mensalidades**.
-- Os **cadastros dos alunos permanecem incompletos** em algumas situações, dificultando a manutenção de informações atualizadas e o acompanhamento do histórico de cada aluno.
-- Há uso frequente de **documentos e registros em papel** para controlar informações e relações entre alunos, funcionários, modalidades e pagamentos. Isso dificulta a consulta, a atualização e a organização dos dados, além de aumentar a possibilidade de perda, duplicidade ou inconsistência.
-Diante disso, identificou-se a oportunidade de desenvolver um **banco de dados estruturado**, capaz de centralizar as informações da academia e estabelecer relacionamentos entre os principais elementos de sua operação: **alunos, matrículas, modalidades, professores, planos e pagamentos**. Uma estrutura organizada de dados facilita o acesso às informações, melhora seu controle e reduz a dependência de registros manuais.
- 
-### Justificativa da escolha
- 
-A **ARGOS FITNESS** foi escolhida pelo grupo por apresentar uma estrutura operacional que envolve diferentes relações entre **alunos, matrículas, planos, pagamentos, modalidades, professores e funcionários**, o que proporciona um cenário adequado para aplicar os conhecimentos de banco de dados.
- 
-A organização também tem um porte compatível com a proposta do projeto: complexidade suficiente para identificar problemas reais e propor melhorias, sem tornar a análise inviável. Isso permite um levantamento detalhado dos processos e a transformação das necessidades em requisitos.
- 
-Outro fator importante foi a **facilidade de acesso à organização e aos seus responsáveis**. O grupo pode realizar visitas, esclarecer dúvidas e obter informações diretamente com os proprietários e gestores, favorecendo uma pesquisa de campo mais precisa e alinhada à realidade.
- 
-### Evidências da organização
- 
-- **Endereço:** Rua José Oiticica Filho, 1008 — Itaquera, São Paulo – SP, 08210-510
-- **Telefone:** (11) 2074-0145
-- **Localização:** [ARGOS FITNESS ACADEMIA](https://maps.app.goo.gl/atC6Nw4yhaU8ndBn6)
 
-<img width="1200" height="1600" alt="FOTO ENTREVISTA" src="https://github.com/user-attachments/assets/3699b63c-32f9-4cb4-8c93-1ee5f4aed73a" />
+### 1.1 Revisão do Modelo Conceitual
 
- 
-## 2. Processos de Negócio
- 
-### Principais processos mapeados
- 
-Durante a pesquisa de campo na **ARGOS FITNESS**, foram identificados os seguintes processos relacionados ao funcionamento e à gestão da academia:
- 
-| # | Processo | Descrição |
-| :-: | :--- | :--- |
-| 1 | **Cadastro de alunos** | Registro e atualização dos dados pessoais, contatos, endereço e informações cadastrais dos alunos. |
-| 2 | **Matrícula e gerenciamento de planos** | Realização das matrículas, definição do plano contratado, controle do período de vigência e acompanhamento do status do aluno. |
-| 3 | **Controle de pagamentos** | Registro das mensalidades, valores pagos, datas, formas de pagamento e situações de pendência. |
-| 4 | **Cadastro e gerenciamento de modalidades** | Organização das atividades oferecidas, como musculação, dança, boxe, funcional, taekwondo, pilates e muay thai. |
-| 5 | **Gestão de professores e instrutores** | Cadastro dos profissionais responsáveis pelas modalidades e acompanhamento de sua relação com os alunos e treinos. |
-| 6 | **Controle de treinos** | Registro das fichas de exercícios, objetivos dos alunos, exercícios prescritos, séries, repetições, cargas e instrutores responsáveis. |
-| 7 | **Controle de acesso** | Registro das entradas dos alunos na academia, permitindo acompanhar a frequência e o histórico de acessos. |
-| 8 | **Controle de equipamentos e materiais** | Cadastro dos aparelhos e demais materiais, incluindo aquisição, patrimônio, localização e situação de uso. |
-| 9 | **Manutenção de equipamentos** | Registro de manutenções preventivas e corretivas, problemas identificados, serviços realizados, custos e próximas revisões. |
-| 10 | **Gestão de fornecedores** | Cadastro e acompanhamento das empresas responsáveis pelo fornecimento de equipamentos, materiais e serviços de manutenção. |
- 
+#### Caracterização da organização
 
- 
+* **Nome e natureza da organização:** A ARGOS FITNESS ACADEMIA é uma academia de bairro com fins lucrativos, localizada em Itaquera, São Paulo/SP, voltada à prática de atividades físicas, ao condicionamento corporal e à promoção da saúde e do bem-estar. A organização foi escolhida pelo grupo para o desenvolvimento do projeto de Banco de Dados, considerando a possibilidade de analisar seus processos administrativos e operacionais e propor uma solução para melhorar a organização e o gerenciamento de suas informações.
+* **Contexto e porte:** Conforme as informações obtidas no levantamento complementar, a academia possui aproximadamente 250 alunos ativos, com variação entre 200 e 300 alunos ao longo do ano, além de cerca de 30 alunos com matrículas congeladas ou inativas. A organização conta com aproximadamente 18 funcionários, 45 máquinas de musculação e equipamentos cardiovasculares e cerca de oito fornecedores recorrentes. O número de novas matrículas fica em torno de 10 a 15 por mês. A academia oferece diferentes atividades, incluindo musculação, dança, boxe, treinamento funcional, taekwondo, pilates e muay thai. Seu funcionamento ocorre de segunda-feira a sábado.
+* **Problemas e necessidades identificados:**
+  * **P01 — Dispersão das informações:** os dados são armazenados em planilhas, documentos impressos, cadernos e conversas pelo WhatsApp, dificultando a consulta, a atualização e a integração dos registros.
+  * **P02 — Dificuldade no controle financeiro:** os pagamentos são registrados em diferentes meios, como planilhas, comprovantes enviados pelo WhatsApp e anotações em cadernos, dificultando a identificação de alunos inadimplentes e o acompanhamento das movimentações financeiras.
+  * **P03 — Falhas no controle de acesso:** quando ocorre falha na leitura biométrica, a recepção pode liberar manualmente a catraca, mas essa entrada nem sempre fica registrada, prejudicando o acompanhamento da frequência dos alunos.
+  * **P04 — Falta de controle de documentos de saúde:** foram observados cadastros sem atestado médico anexado, além da ausência de alertas automáticos para documentos próximos do vencimento.
+  * **P05 — Dificuldade no acompanhamento de equipamentos e manutenções:** as informações sobre equipamentos e serviços de manutenção são mantidas em planilhas e comunicações verbais, dificultando a consulta ao histórico e aos custos de manutenção.
+  * **P06 — Necessidade de controle de despesas:** foi identificada a necessidade de organizar as contas a pagar, permitindo acompanhar despesas, valores, vencimentos e situações de pagamento.
+* **Escopo do sistema:** O sistema de banco de dados proposto tem como objetivo centralizar e organizar as informações dos principais processos administrativos e operacionais da ARGOS FITNESS. O modelo contempla o gerenciamento de pessoas, alunos, instrutores, telefones, planos, matrículas, pagamentos, acessos, avaliações físicas, treinos, exercícios, fornecedores, equipamentos, manutenções e contas a pagar. A estrutura busca estabelecer relacionamentos entre essas informações, reduzir a dependência de controles isolados e possibilitar consultas que auxiliem no acompanhamento das atividades e na tomada de decisões gerenciais.
+* **Justificativa da escolha:** A ARGOS FITNESS foi escolhida por apresentar diferentes processos administrativos, financeiros e operacionais, além de um volume de informações adequado para o desenvolvimento de um sistema de banco de dados relacional. A variedade de atividades, o número de alunos, funcionários, equipamentos e fornecedores possibilita trabalhar com diferentes entidades, relacionamentos e regras de negócio. A possibilidade de contato com a organização também permitiu realizar observações e obter informações para aproximar o modelo da realidade estudada.
+
 ---
- 
-## 3. Requisitos do Sistema
- 
-### 3.1 Requisitos Funcionais
- 
-O sistema deverá permitir o gerenciamento integrado das principais informações e processos da **ARGOS FITNESS**, possibilitando maior organização, centralização e controle dos dados. Entre as principais funcionalidades:
- 
-- **Cadastrar alunos**, registrando dados pessoais, contato, endereço, contato de emergência e status do cadastro.
-- **Atualizar os dados dos alunos**, corrigindo ou complementando informações cadastrais.
-- **Registrar matrículas**, relacionando o aluno ao plano contratado e à data de início da matrícula.
-- **Cadastrar e gerenciar planos**, registrando nome do plano, valor e dia de vencimento.
-- **Registrar pagamentos**, armazenando valor pago, data, forma de pagamento e situação da mensalidade.
-- **Identificar pagamentos pendentes**, acompanhando mensalidades em aberto ou em atraso.
-- **Cadastrar modalidades**, registrando as atividades oferecidas pela academia.
-- **Cadastrar professores e instrutores**, relacionando cada profissional às modalidades e aos treinos sob sua responsabilidade.
-- **Registrar fichas de treino**, vinculando o aluno ao instrutor e armazenando objetivos, exercícios, séries, repetições e cargas.
-- **Registrar o acesso dos alunos**, armazenando data e horário de entrada para controle de frequência.
-- **Cadastrar equipamentos e materiais**, registrando nome, categoria, patrimônio, data de aquisição, valor e situação de uso.
-- **Cadastrar fornecedores**, armazenando informações cadastrais, contatos, categorias de fornecimento e endereço.
-- **Registrar manutenções de equipamentos**, informando equipamento, fornecedor ou assistência responsável, tipo de manutenção, data, descrição, custo e próxima revisão.
-- **Consultar informações**, localizando rapidamente dados de alunos, matrículas, pagamentos, treinos, equipamentos, fornecedores e manutenções.
-- **Gerar informações e relatórios de acompanhamento**, auxiliando no controle de alunos, pagamentos, frequência, equipamentos e demais processos administrativos.
-- **Centralizar os dados da academia**, relacionando e armazenando as informações dos diferentes processos em um único banco de dados.
-- **Manter o histórico das informações**, acompanhando registros de matrículas, pagamentos, acessos, treinos e manutenções.
-### 3.2 Requisitos Não Funcionais
- 
-O sistema deverá apresentar características de qualidade que garantam seu funcionamento adequado e contribuam para a organização e a segurança das informações da **ARGOS FITNESS**.
- 
-| Característica | Descrição |
+
+#### Relato da entrevista
+
+* **Quem:** Entrevistado: Alan Costa (Recepcionista e Auxiliar de administração da ARGOS FITNESS)
+* **Integrantes do grupo presentes:** Paulo Henrique Quintiliano Dos Santos
+* **Quando e onde:** Data: 06/11/2026 | Local: ARGOS FITNESS
+* **Comprovação:** Evidências registradas em imagem e documento na pasta do projeto.
+* **Resumo do levantamento:** Foram confirmados os procedimentos operacionais e administrativos da ARGOS FITNESS, incluindo cadastro de alunos, acompanhamento de matrículas, gerenciamento de planos, fluxo de pagamentos, registro de acessos, cadastro de instrutores e montagem de treinos/exercícios. Além disso, identificaram-se as rotinas de cadastro de fornecedores, controle de equipamentos, manutenções e a necessidade de controle de contas a pagar.
+
+ **[Clique aqui para acessar o Documento Completo do Levantamento na pasta (`levantamento/levantamento.md`)](./levantamento/levantamento.md)**
+
+---
+
+#### Detalhamento de Processos, Requisitos e Regras de Negócio
+
+##### 1. PROCESSOS
+
+| Processo Resumido | Descrição Detalhada |
 | :--- | :--- |
-| **Desempenho** | Realizar cadastros, alterações e registros de forma rápida, sem demora significativa nas operações. |
-| **Segurança** | Proteger os dados armazenados, restringindo o acesso conforme o nível de autorização dos usuários e evitando alterações ou acessos indevidos. |
-| **Usabilidade** | Interface simples, intuitiva e organizada, para que funcionários e gestores usem o sistema com facilidade, mesmo sem conhecimentos avançados de informática. |
-| **Disponibilidade** | Estar disponível durante o horário de funcionamento da academia. |
-| **Confiabilidade** | Armazenar os dados de forma consistente, reduzindo o risco de perda, duplicidade ou inconsistência. |
-| **Manutenibilidade** | Possuir estrutura organizada que facilite correções, atualizações e inclusão de novas funcionalidades. |
-| **Escalabilidade** | Permitir o crescimento da quantidade de alunos, funcionários, modalidades, pagamentos e demais registros sem comprometer o funcionamento. |
-| **Backup e recuperação** | Possuir mecanismos de cópia de segurança e recuperação, reduzindo os impactos de falhas ou perdas de informações. |
-| **Privacidade** | Tratar as informações pessoais e cadastrais dos alunos de forma adequada, com acesso somente a usuários autorizados. |
- 
----
- 
-## 4. Regras de Negócio
- 
-### Regras operacionais
- 
-Com base nos processos identificados na **ARGOS FITNESS**, foram estabelecidas as seguintes regras operacionais para orientar o funcionamento do sistema:
- 
-1. Um aluno só poderá realizar uma matrícula se possuir um cadastro válido no sistema.
-2. Uma matrícula deverá estar vinculada a um plano previamente cadastrado.
-3. Um plano deverá possuir um valor e uma data de vencimento definidos.
-4. Um pagamento deverá estar vinculado a um aluno e, quando aplicável, à respectiva matrícula.
-5. Um pagamento deverá possuir data, valor, forma de pagamento e status definidos.
-6. Uma mensalidade só poderá ser considerada paga após o registro do respectivo pagamento.
-7. Um aluno com cadastro inativo ou trancado não deverá ser considerado ativo para novos registros de acesso ou matrícula.
-8. Um registro de acesso só poderá ser realizado para um aluno cadastrado e apto a frequentar a academia.
-9. Um treino deverá estar vinculado a um aluno e a um instrutor responsável.
-10. Uma modalidade deverá estar previamente cadastrada para poder ser associada a alunos ou instrutores.
-11. Um equipamento deverá possuir cadastro único, identificado por seu número de série ou patrimônio, quando disponível.
-12. Um equipamento em manutenção não deverá ser considerado disponível para utilização até que sua situação seja alterada para ativa.
-13. Uma manutenção deverá estar vinculada a um equipamento cadastrado.
-14. Um fornecedor deverá possuir cadastro antes de ser associado à aquisição de equipamentos ou à realização de serviços de manutenção.
-15. O sistema deverá impedir o cadastro de dois alunos com o mesmo CPF.
-16. O sistema deverá impedir o cadastro duplicado de fornecedores com o mesmo CNPJ.
-17. Informações obrigatórias deverão ser preenchidas antes da conclusão de um cadastro ou registro.
-18. Somente usuários autorizados deverão poder alterar ou excluir informações administrativas e financeiras.
-19. As informações registradas deverão manter seus relacionamentos entre alunos, matrículas, pagamentos, treinos, equipamentos, fornecedores e manutenções.
-### Restrições organizacionais
- 
-Durante a análise da **ARGOS FITNESS**, foram identificadas restrições organizacionais que influenciam a estrutura do banco de dados, os níveis de acesso e a forma de utilização das informações:
- 
-| Restrição | Descrição |
+| **Cadastro de Aluno** | O cadastro do aluno utiliza as informações pessoais da entidade PESSOA, incluindo `ID_PESSOA`, `CD_CPF`, `NM_PESSOA` e `NM_EMAIL`. Os telefones são registrados na entidade TELEFONE, enquanto os dados específicos do aluno, como `DS_OBJETIVO`, `VR_ALTURA` e `VR_PESO`, são armazenados na entidade ALUNO. |
+| **Cadastro de Instrutores** | O cadastro do instrutor utiliza as informações pessoais da entidade PESSOA e os dados específicos armazenados na entidade INSTRUTOR, incluindo `ID_PESSOA`, `CD_CREF`, `DS_ESPECIALIDADE` e `DT_ADMISSAO`. |
+| **Contratação de Plano e Matrícula** | O processo utiliza a entidade PLANO, que armazena `ID_PLANO`, `NM_PLANO`, `VR_VALOR` e `QT_DURACAO_MESES`. A matrícula é registrada na entidade MATRICULA, relacionando o aluno ao plano por meio de `ID_ALUNO` e `ID_PLANO`, além de armazenar `DT_INICIO`, `DT_FIM` e `TP_STATUS`. |
+| **Pagamento de Matrícula** | O registro do pagamento utiliza a entidade PAGAMENTO, que armazena `ID_PAGAMENTO`, `ID_MATRICULA`, `VR_VALOR`, `DT_VENCIMENTO` e `TP_STATUS_PAGAMENTO`, permitindo acompanhar os pagamentos vinculados às matrículas. |
+| **Controle de Acesso** | O controle de acesso utiliza a entidade ACESSO, que registra `ID_ACESSO`, `ID_MATRICULA` e `DT_HORA_ENTRADA`, permitindo relacionar cada entrada à matrícula correspondente. |
+| **Avaliação Física** | O processo utiliza a entidade AVALIACAO_FISICA, que registra `ID_AVALIACAO`, `ID_ALUNO`, `DT_AVALIACAO`, `VR_PESO` e `VR_ALTURA`, permitindo manter o histórico das avaliações realizadas. |
+| **Elaboração de Treino** | O processo utiliza a entidade TREINO, que registra `ID_TREINO`, `ID_ALUNO`, `ID_INSTRUTOR`, `NM_TREINO`, `DT_INICIO` e `DT_FIM`, relacionando o treino ao aluno e ao instrutor responsável. |
+| **Montagem da Ficha de Exercícios** | Os exercícios são cadastrados na entidade EXERCICIO, que armazena `ID_EXERCICIO`, `NM_EXERCICIO`, `TP_GRUPO_MUSCULAR` e `DS_EXERCICIO`. A associação entre treinos e exercícios é realizada pela entidade TREINO_EXERCICIO, que registra `ID_TREINO`, `ID_EXERCICIO`, `QT_SERIES`, `QT_REPETICOES`, `VR_CARGA` e `QT_INTERVALO_SEG`. |
+| **Cadastro de Fornecedores** | O processo utiliza a entidade FORNECEDOR, que armazena `ID_FORNECEDOR`, `NM_FORNECEDOR`, `CD_CNPJ` e `NM_EMAIL`, permitindo identificar as empresas fornecedoras e relacioná-las aos equipamentos, itens de estoque e contas a pagar. |
+| **Registro de Equipamentos** | O cadastro dos equipamentos utiliza a entidade EQUIPAMENTO, que armazena `ID_EQUIPAMENTO`, `ID_FORNECEDOR`, `NM_EQUIPAMENTO`, `QT_QUANTIDADE` e `TP_STATUS`, permitindo identificar os equipamentos e seus respectivos fornecedores. |
+| **Manutenção de Equipamentos** | O processo utiliza a entidade MANUTENCAO, que registra `ID_MANUTENCAO`, `ID_EQUIPAMENTO`, `DT_MANUTENCAO`, `VR_CUSTO` e `TP_STATUS`, permitindo relacionar as manutenções aos equipamentos correspondentes. |
+| **Contas a Pagar** | O controle financeiro utiliza a entidade CONTAS_A_PAGAR, que armazena `ID_CONTA_PAGAR`, `ID_FORNECEDOR`, `DS_CONTA`, `VR_VALOR`, `DT_VENCIMENTO`, `DT_PAGAMENTO` e `TP_STATUS_PAGAMENTO`, permitindo acompanhar as despesas e obrigações financeiras da organização. |
+
+##### 2. REQUISITOS FUNCIONAIS (RF)
+
+| Código | Requisito Funcional Detalhado |
 | :--- | :--- |
-| **Proteção dos dados pessoais** | O sistema deverá proteger dados pessoais dos alunos (CPF, endereço, telefone e contatos), preservando a privacidade e atendendo à **Lei Geral de Proteção de Dados (LGPD)**. |
-| **Acesso restrito às informações** | Dados financeiros, cadastrais e relacionados à saúde ou anamnese deverão ser acessíveis somente a funcionários autorizados, reduzindo o risco de acesso indevido e exposição. |
-| **Dependência da rotina da academia** | O sistema deverá ser compatível com o funcionamento de **segunda-feira a sábado**. As funcionalidades de matrícula, pagamento, acesso e atendimento devem estar disponíveis conforme a rotina dos funcionários. |
-| **Registros obrigatórios** | Determinadas informações deverão ser preenchidas antes da conclusão de um cadastro, matrícula ou outro processo, evitando registros incompletos. |
-| **Controle financeiro** | Os registros de mensalidades e pagamentos deverão seguir os valores e condições dos planos oferecidos, permitindo acompanhar pagamentos realizados e pendências. |
-| **Controle de equipamentos** | Equipamentos em manutenção ou fora de operação deverão ter o status atualizado no sistema, evitando que sejam considerados disponíveis quando não estiverem aptos. |
-| **Limitação de recursos** | Por ser uma academia de bairro, a solução deve considerar os recursos financeiros, tecnológicos e humanos disponíveis, priorizando funcionalidades essenciais sem exigir infraestrutura incompatível. |
-| **Facilidade de adaptação dos funcionários** | O uso do sistema deve ser simples e adequado ao nível de familiaridade dos colaboradores com ferramentas informatizadas. |
- 
----
- 
-## 5. Dicionário de Dados Conceitual (Preliminar)
- 
-Dicionário construído a partir do DER (Seção 7) e do [documento complementar de Dicionário de Dados do sistema](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html), que traz os tipos físicos (MySQL 8) e os índices. A obrigatoriedade indicada abaixo é uma **proposta**, pois o DER não explicita nulabilidade, e deve ser validada antes da implementação.
+| **RF01** | O sistema deve permitir inserir e armazenar os dados na entidade PESSOA, incluindo `ID_PESSOA`, `NM_PESSOA`, `CD_CPF` e `NM_EMAIL`. |
+| **RF02** | O sistema deve permitir registrar telefones na entidade TELEFONE, vinculando cada registro a uma pessoa por meio de `ID_PESSOA` e armazenando `NR_TELEFONE` e `TP_TELEFONE`. |
+| **RF03** | O sistema deve permitir registrar alunos na entidade ALUNO, vinculando-os à entidade PESSOA por meio de `ID_PESSOA` e armazenando `DS_OBJETIVO`, `VR_ALTURA` e `VR_PESO`. |
+| **RF04** | O sistema deve permitir registrar instrutores na entidade INSTRUTOR, vinculando-os à entidade PESSOA por meio de `ID_PESSOA` e armazenando `CD_CREF`, `DS_ESPECIALIDADE` e `DT_ADMISSAO`. |
+| **RF05** | O sistema deve permitir cadastrar planos na entidade PLANO, armazenando `ID_PLANO`, `NM_PLANO`, `VR_VALOR` e `QT_DURACAO_MESES`. |
+| **RF06** | O sistema deve permitir registrar matrículas na entidade MATRICULA, relacionando alunos e planos por meio de `ID_ALUNO` e `ID_PLANO`, além de armazenar `DT_INICIO`, `DT_FIM` e `TP_STATUS`. |
+| **RF07** | O sistema deve permitir cadastrar pagamentos na entidade PAGAMENTO, vinculando-os a uma matrícula por meio de `ID_MATRICULA` e armazenando `VR_VALOR`, `DT_VENCIMENTO` e `TP_STATUS_PAGAMENTO`. |
+| **RF08** | O sistema deve permitir armazenar os registros de entrada na entidade ACESSO, vinculando cada acesso a uma matrícula por meio de `ID_MATRICULA` e registrando `DT_HORA_ENTRADA`. |
+| **RF09** | O sistema deve permitir cadastrar avaliações na entidade AVALIACAO_FISICA, vinculando-as ao aluno por meio de `ID_ALUNO` e armazenando `DT_AVALIACAO`, `VR_PESO` e `VR_ALTURA`. |
+| **RF10** | O sistema deve permitir registrar treinos na entidade TREINO, relacionando alunos e instrutores por meio de `ID_ALUNO` e `ID_INSTRUTOR`, além de armazenar `NM_TREINO`, `DT_INICIO` e `DT_FIM`. |
+| **RF11** | O sistema deve permitir registrar exercícios na entidade EXERCICIO, armazenando `NM_EXERCICIO`, `TP_GRUPO_MUSCULAR` e `DS_EXERCICIO`. |
+| **RF12** | O sistema deve permitir relacionar as entidades TREINO e EXERCICIO por meio da entidade associativa TREINO_EXERCICIO, registrando `QT_SERIES`, `QT_REPETICOES`, `VR_CARGA` e `QT_INTERVALO_SEG`. |
+| **RF13** | O sistema deve permitir registrar fornecedores na entidade FORNECEDOR, armazenando `NM_FORNECEDOR`, `CD_CNPJ` e `NM_EMAIL`. |
+| **RF14** | O sistema deve permitir registrar equipamentos na entidade EQUIPAMENTO, vinculando-os a fornecedores por meio de `ID_FORNECEDOR` e armazenando `NM_EQUIPAMENTO`, `QT_QUANTIDADE` e `TP_STATUS`. |
+| **RF15** | O sistema deve permitir cadastrar manutenções na entidade MANUTENCAO, vinculando-as aos equipamentos por meio de `ID_EQUIPAMENTO` e armazenando `DT_MANUTENCAO`, `VR_CUSTO` e `TP_STATUS`. |
+| **RF16** | O sistema deve permitir cadastrar despesas na entidade CONTAS_A_PAGAR, relacionando-as aos fornecedores por meio de `ID_FORNECEDOR` e armazenando `DS_CONTA`, `VR_VALOR`, `DT_VENCIMENTO`, `DT_PAGAMENTO` e `TP_STATUS_PAGAMENTO`. |
+| **RF17** | O sistema deve permitir realizar consultas aos registros das entidades do banco de dados, possibilitando a obtenção de informações sobre alunos, matrículas, pagamentos, acessos, treinos, fornecedores, equipamentos, estoque, manutenções e contas a pagar. |
 
-Versão em HTML: [Dicionário de Dados — ARGOS FITNESS](https://beatrys0111.github.io/ARGOS-FITNESS/docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
- 
-**Prefixos utilizados:** `nm_` = nome; `dt_` = data; `id_` = identificador; `cd_` = código; `qt_` = quantidade; `tp_` = tipo/categorização; `ds_` = descrição/texto livre; `vr_` = valor numérico/monetário.
- 
-### Entidade: Pessoa (generalização)
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_pessoa (PK) | Identificador único da pessoa | Obrigatório; gerado pelo sistema; herdado pelas especializações |
-| nome | Nome completo da pessoa | Obrigatório |
-| cpf | CPF utilizado para identificação do cadastro | Obrigatório; único (impede dois cadastros com o mesmo CPF) |
-| email | E-mail de contato | Obrigatório |
-| telefone | Telefone de contato | Obrigatório |
- 
-### Entidade: Aluno (especialização de Pessoa)
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| dt_matricula | Data de matrícula do aluno na academia | Obrigatório |
-| ds_objetivo | Objetivo informado pelo aluno para seu acompanhamento | Opcional |
-| vr_peso | Peso registrado do aluno | Opcional; dado de saúde, com acesso restrito (LGPD) |
-| vr_altura | Altura registrada do aluno | Opcional; dado de saúde, com acesso restrito (LGPD) |
- 
-### Entidade: Instrutor (especialização de Pessoa)
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| cd_cref | Registro profissional do instrutor no CREF | Obrigatório; único |
-| ds_especialidade | Área ou especialidade de atuação do instrutor | Opcional |
-| dt_admissao | Data de admissão do instrutor na academia | Obrigatório |
- 
-### Entidade: Fornecedor (especialização de Pessoa)
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_fornecedor (PK) | Identificador único do fornecedor | Obrigatório; gerado pelo sistema |
-| nm_fornecedor | Nome ou razão social do fornecedor | Obrigatório |
-| cnpj | CNPJ utilizado para identificação fiscal | Obrigatório; único (impede cadastro duplicado de fornecedores) |
-| email | E-mail para contato e comunicação com o fornecedor | Opcional |
- 
-### Entidade: Plano
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_plano (PK) | Identificador único do plano | Obrigatório; gerado pelo sistema |
-| nm_plano | Nome comercial do plano | Obrigatório |
-| vr_valor | Valor monetário do plano | Obrigatório; planos praticados entre R$ 90,00 e R$ 150,00 |
-| qt_duracao_meses | Duração do plano em meses | Obrigatório; maior que zero |
- 
-### Entidade: Matrícula 
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_matricula (PK) | Identificador único da matrícula | Obrigatório; gerado pelo sistema |
-| dt_inicio | Data de início da matrícula | Obrigatório |
-| dt_fim | Data de término da vigência da matrícula | Opcional; preenchida quando a matrícula é encerrada |
-| tp_status | Situação da matrícula | Valores propostos: ativa, encerrada, trancada. Matrícula não ativa não permite novos acessos |
- 
-### Entidade: Pagamento
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_pagamento (PK) | Identificador único do pagamento | Obrigatório; gerado pelo sistema |
-| vr_valor | Valor monetário cobrado ou pago | Obrigatório; segue o valor do plano contratado |
-| dt_vencimento | Data de vencimento da cobrança | Obrigatório |
-| tp_status_pagamento | Situação do pagamento | Valores propostos: pendente, pago, atrasado. A mensalidade só é considerada paga após o registro do pagamento |
- 
-### Entidade: Acesso
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_acesso (PK) | Identificador único do registro de acesso | Obrigatório; gerado pelo sistema |
-| dt_hora_entrada | Data e horário de entrada na academia | Obrigatório; preenchido automaticamente |
- 
-### Entidade: Treino
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_treino (PK) | Identificador único do treino | Obrigatório; gerado pelo sistema |
-| id_exercicio | Identificador do exercício que compõe o treino | Obrigatório; o exercício precisa estar previamente cadastrado |
-| qt_series | Quantidade de séries prescritas | Obrigatório |
-| qt_repeticoes | Quantidade de repetições por série | Obrigatório |
- 
-### Entidade: Exercício
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_exercicio (PK) | Identificador único do exercício | Obrigatório; gerado pelo sistema |
-| nm_exercicio | Nome do exercício | Obrigatório |
-| tp_grupo_muscular | Grupo muscular trabalhado pelo exercício | Obrigatório |
-| ds_declaracao | Descrição ou orientação geral do exercício | Opcional |
- 
-### Entidade: Avaliação Física
-     
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_avaliacao (PK) | Identificador único da avaliação física | Obrigatório; gerado pelo sistema |
-| dt_avaliacao | Data de realização da avaliação | Obrigatório |
-| vr_peso | Peso medido na avaliação | Obrigatório; dado de saúde, com acesso restrito (LGPD) |
-| vr_altura | Altura registrada na avaliação | Obrigatório; dado de saúde, com acesso restrito (LGPD) |
- 
-### Entidade: Equipamento
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_equipamento (PK) | Identificador único do equipamento | Obrigatório; gerado pelo sistema |
-| nm_equipamento | Nome do equipamento utilizado na academia | Obrigatório |
-| qt_quantidade | Quantidade disponível daquele equipamento | Obrigatório; maior ou igual a zero |
-| tp_status | Situação atual do equipamento | Valores propostos: ativo, em manutenção, inativo. Equipamento em manutenção não é considerado disponível |
- 
-### Entidade: Manutenção
- 
-| Atributo | Descrição | Regra de negócio associada |
-| :--- | :--- | :--- |
-| id_manutencao (PK) | Identificador único da manutenção | Obrigatório; gerado pelo sistema |
-| dt_manutencao | Data de realização ou registro da manutenção | Obrigatório |
-| vr_custo | Custo associado à manutenção | Obrigatório; maior ou igual a zero |
-| tp_status | Situação da manutenção | Valores propostos: concluída, pendente, programada |
- 
+##### 3. REGRAS DE NEGÓCIO (RN)
+
+* **4.1 Regras operacionais**
+  * **RN01 – Cadastro de alunos:** Todo aluno deve possuir um cadastro prévio no sistema, contendo suas informações pessoais obrigatórias, antes de realizar uma matrícula.
+  * **RN02 – Registro de matrículas:** Toda matrícula deve estar vinculada a um aluno previamente cadastrado e a um plano disponível no sistema.
+  * **RN03 – Cadastro de planos:** Todo plano deve possuir um nome, um valor e uma duração definida em meses, conforme os atributos estabelecidos no modelo de dados.
+  * **RN04 – Vínculo de pagamentos:** Todo pagamento deve estar relacionado ao aluno correspondente e, quando aplicável, à matrícula à qual se refere.
+  * **RN05 – Registro de pagamentos:** Todo pagamento deve estar vinculado ao aluno correspondente e conter, obrigatoriamente, o valor, a data de vencimento e a situação do pagamento, conforme os atributos definidos no modelo lógico.
+  * **RN06 – Confirmação de pagamentos:** Um pagamento somente deve ser considerado realizado quando houver um registro correspondente no sistema, com a situação devidamente atualizada.
+  * **RN07 – Situação das matrículas:** O sistema deve manter a situação de cada matrícula atualizada, permitindo identificar matrículas ativas e inativas.
+  * **RN08 – Controle de acesso:** O registro de acesso deve estar relacionado a um aluno cadastrado no sistema.
+  * **RN09 – Organização dos treinos:** Todo treino deve estar relacionado ao aluno e ao instrutor responsáveis, conforme os vínculos definidos no modelo de dados.
+  * **RN10 – Cadastro de exercícios:** Os exercícios devem ser cadastrados previamente no sistema antes de serem associados aos treinos.
+  * **RN11 – Identificação de equipamentos:** Cada equipamento deve possuir um identificador único para facilitar sua localização e controle.
+  * **RN12 – Situação dos equipamentos:** Equipamentos que estiverem em manutenção devem ser identificados com a situação correspondente, permitindo diferenciá-los daqueles disponíveis para uso.
+  * **RN13 – Registro de manutenção:** Toda manutenção registrada deve estar vinculada ao equipamento correspondente, contendo as informações previstas no modelo de dados.
+  * **RN14 – Cadastro de fornecedores:** O fornecedor deve estar cadastrado no sistema antes de ser associado a registros de equipamentos ou contas a pagar.
+  * **RN15 – Unicidade do CPF:** O CPF informado no cadastro de uma pessoa deve ser único no sistema, evitando registros duplicados.
+  * **RN16 – Unicidade do CNPJ:** O CNPJ informado no cadastro de um fornecedor deve ser único, evitando duplicidade de registros.
+  * **RN17 – Preenchimento obrigatório:** Os registros devem conter todas as informações obrigatórias antes de serem concluídos no sistema.
+  * **RN18 – Controle de alterações:** O acesso às operações de inclusão, alteração e exclusão de informações administrativas e financeiras deve ser restrito aos usuários autorizados.
+  * **RN19 – Integridade dos relacionamentos:** O sistema deve preservar os vínculos entre as entidades, evitando registros relacionados a alunos, matrículas, pagamentos, treinos, exercícios, equipamentos, fornecedores e manutenções sem as respectivas referências.
+  * **RN20 – Cadastro de contas a pagar:** Toda conta a pagar deve possuir uma descrição, um valor e uma data de vencimento registrados no sistema.
+  * **RN21 – Situação das contas a pagar:** Cada conta a pagar deve possuir uma situação de pagamento atualizada, permitindo identificar as despesas pendentes e as já pagas.
+  * **RN22 – Registro da quitação:** Quando uma conta a pagar for quitada, a data de pagamento correspondente deve ser registrada no sistema.
+  * **RN23 – Acompanhamento das despesas:** O sistema deve permitir consultar e acompanhar as contas a pagar por meio de sua descrição, valor, data de vencimento, situação e data de pagamento.
+  * **RN24 – Vínculo das contas a pagar com fornecedores:** Quando uma conta a pagar estiver relacionada a um fornecedor, o sistema deverá manter esse vínculo conforme o relacionamento definido no modelo lógico.
+
+* **4.2 Restrições organizacionais**
+  * **RN25 – Proteção de dados pessoais:** O sistema deve respeitar as disposições da Lei Geral de Proteção de Dados Pessoais (LGPD), garantindo o tratamento adequado das informações armazenadas.
+  * **RN26 – Restrição de acesso a informações:** Dados pessoais, financeiros e informações relacionadas às avaliações físicas dos alunos devem ser acessados somente por usuários autorizados, de acordo com suas responsabilidades.
+  * **RN27 – Compatibilidade com o funcionamento da academia:** O sistema deve atender às necessidades administrativas e operacionais da academia durante seu período de funcionamento, de segunda-feira a sábado.
+  * **RN28 – Registros obrigatórios:** As informações necessárias para o controle das atividades da academia devem ser registradas e mantidas organizadas no sistema, evitando a dependência exclusiva de anotações físicas.
+  * **RN29 – Controle financeiro:** O sistema deve permitir o acompanhamento das informações financeiras contempladas no escopo do projeto, incluindo pagamentos de alunos e contas a pagar, com seus respectivos valores, vencimentos e situações.
+  * **RN30 – Atualização dos equipamentos:** As informações sobre a situação dos equipamentos devem ser mantidas atualizadas sempre que houver alterações decorrentes de manutenção ou indisponibilidade.
+  * **RN31 – Recursos disponíveis:** A implementação do sistema deve considerar os recursos financeiros, tecnológicos e humanos disponíveis na organização.
+  * **RN32 – Facilidade de utilização:** O sistema deve apresentar uma interface simples e organizada, facilitando o uso pelos funcionários responsáveis pelas atividades administrativas e operacionais.
+
 ---
- 
-## 6. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)
- 
-### Entidades reconhecidas
- 
-| Entidade | Justificativa |
+
+#### Revisão do DER Conceitual
+
+O Diagrama Entidade-Relacionamento (DER) conceitual do sistema foi desenvolvido utilizando a ferramenta **brModelo**.
+
+ **[Clique aqui para abrir o PDF do DER Conceitual (`DER_Conceitual.pdf`)](./DER_Conceitual.pdf)**
+
+### ***Revisão do DER conceitual – Entrega 1***
+
+| Apontamento da correção da E1 | O que mudou no trabalho | Por quê |
+| :--- | :--- | :--- |
+| Ausência da entidade MODALIDADE. | A necessidade de representar as modalidades foi identificada durante o levantamento, mas a entidade MODALIDADE não foi incorporada ao DER conceitual apresentado. | A entidade permitiria organizar as modalidades oferecidas pela academia e representar suas informações de maneira independente. |
+| Relacionamento COMPÕE sem os atributos de séries e repetições. | O relacionamento entre TREINO e EXERCICIO foi mantido, porém os atributos `QT_SERIES` e `QT_REPETICOES` não foram acrescentados à representação conceitual. | Esses atributos são necessários para detalhar a composição dos treinos e especificar a quantidade de séries e repetições de cada exercício. |
+| FORNECEDOR representado como especialização de PESSOA. | A representação de FORNECEDOR como especialização de PESSOA foi mantida na versão do DER registrada no esqueleto. | A manutenção dessa estrutura preserva a decisão de representar fornecedores como um tipo específico de pessoa. |
+| Especialização de PESSOA indicada como (p,c). | A especialização de PESSOA em ALUNO e INSTRUTOR foi mantida com a indicação parcial e exclusiva (p,c). | Essa representação indica que uma pessoa pode não pertencer a nenhuma das especializações e que não pode ser simultaneamente ALUNO e INSTRUTOR. |
+
+---
+
+### 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
+
+A conversão do modelo conceitual para o modelo lógico foi realizada a partir do Diagrama Entidade-Relacionamento (DER), transformando as entidades, os atributos e os relacionamentos em uma estrutura de tabelas relacionais no banco de dados da ARGOS FITNESS ACADEMIA:
+
+* **Entidades → Tabelas:** Cada entidade identificada no modelo conceitual foi transformada em uma tabela no modelo lógico: `PESSOA`, `TELEFONE`, `ALUNO`, `INSTRUTOR`, `FORNECEDOR`, `EQUIPAMENTO`, `TREINO`, `EXERCICIO`, `TREINO_EXERCICIO`, `MATRICULA`, `PLANO`, `MANUTENCAO`, `AVALIACAO_FISICA`, `PAGAMENTO`, `ACESSO` e `CONTAS_A_PAGAR`. Cada tabela recebeu uma chave primária para identificar seus registros de maneira única.
+* **Atributos → Colunas:** Os atributos das entidades foram convertidos em colunas das respectivas tabelas, respeitando suas finalidades. Atributos identificadores foram definidos como chaves primárias (PK), enquanto os demais foram formatados de acordo com os tipos de dados necessários (`INT`, `VARCHAR`, `DECIMAL`, `DATE`, `DATETIME`).
+* **Relacionamentos → Chaves:** Os relacionamentos foram convertidos em vínculos utilizando chaves estrangeiras (FK), mantendo a integridade referencial dos registros entre alunos, matrículas, pagamentos, equipamentos, manutenções, fornecedores e contas a pagar.
+* **Cardinalidades:** Nos relacionamentos (1:N), a chave estrangeira foi alocada na tabela do lado "muitos". Nos relacionamentos (N:M), foi criada a tabela associativa `TREINO_EXERCICIO` (representando a associação entre `TREINO` e `EXERCICIO`), com chave primária composta.
+* **Generalização/Especialização:** A generalização/especialização da entidade `PESSOA` foi convertida mantendo uma tabela para a entidade genérica (`PESSOA`) e tabelas próprias para as especializações (`ALUNO` e `INSTRUTOR`), reutilizando a chave `ID_PESSOA` como PK e FK simultaneamente.
+
+---
+
+### 1.3 Definição de Chaves Primárias e Estrangeiras
+
+| Tabela | Chave Primária (PK) | Chave Estrangeira (FK) |
+| :--- | :--- | :--- |
+| `PESSOA` | `ID_PESSOA` | Não possui |
+| `TELEFONE` | `ID_TELEFONE` | `ID_PESSOA` |
+| `ALUNO` | `ID_PESSOA` | `ID_PESSOA` |
+| `INSTRUTOR` | `ID_PESSOA` | `ID_PESSOA` |
+| `PLANO` | `ID_PLANO` | Não possui |
+| `MATRICULA` | `ID_MATRICULA` | `ID_ALUNO`, `ID_PLANO` |
+| `PAGAMENTO` | `ID_PAGAMENTO` | `ID_MATRICULA` |
+| `ACESSO` | `ID_ACESSO` | `ID_MATRICULA` |
+| `AVALIACAO_FISICA` | `ID_AVALIACAO` | `ID_ALUNO` |
+| `TREINO` | `ID_TREINO` | `ID_ALUNO`, `ID_INSTRUTOR` |
+| `EXERCICIO` | `ID_EXERCICIO` | Não possui |
+| `TREINO_EXERCICIO` | `ID_TREINO` e `ID_EXERCICIO` (chave composta) | `ID_TREINO`, `ID_EXERCICIO` |
+| `FORNECEDOR` | `ID_FORNECEDOR` | Não possui |
+| `EQUIPAMENTO` | `ID_EQUIPAMENTO` | `ID_FORNECEDOR` |
+| `MANUTENCAO` | `ID_MANUTENCAO` | `ID_EQUIPAMENTO` |
+| `CONTAS_A_PAGAR` | `ID_CONTA_PAGAR` | `ID_FORNECEDOR` |
+
+---
+
+### 1.4 Processo de Normalização (1FN, 2FN e 3FN)
+
+| Forma Normal | Aplicação no modelo lógico |
 | :--- | :--- |
-| **Pessoa** | Cadastro-base com os dados de identificação comuns a todos que se relacionam com a academia. |
-| **Aluno** | Especialização de Pessoa; usuário que treina na academia e é o elemento central dos processos. |
-| **Instrutor** | Especialização de Pessoa; profissional responsável por montar treinos e aplicar avaliações. |
-| **Fornecedor** | Especialização de Pessoa; empresa que fornece equipamentos e serviços. |
-| **Plano** | Oferta comercial da academia, independente de quem a contrata. |
-| **Matrícula** | Vínculo do aluno com um plano, com período e situação próprios. |
-| **Pagamento** | Cobrança e quitação de mensalidades, mantendo o histórico financeiro. |
-| **Acesso** | Registro das entradas na academia, para controle de frequência. |
-| **Treino** | Ficha de treino montada por um instrutor para um aluno. |
-| **Exercício** | Catálogo de exercícios disponíveis para compor os treinos. |
-| **Avaliação Física** | Registro das medidas do aluno ao longo do tempo, para acompanhar sua evolução. |
-| **Equipamento** | Aparelhos e materiais da academia. |
-| **Manutenção** | Intervenções realizadas ou programadas nos equipamentos, preservando o histórico. |
- 
-### Atributos e classificações
- 
-Os atributos de cada entidade estão detalhados na Seção 5. Resumo da classificação:
- 
-| Entidade | Identificador | Atributos simples |
+| **1ª Forma Normal (1FN)** | O modelo atende à Primeira Forma Normal ao manter os atributos com valores atômicos, sem grupos repetidos ou multivalorados. Por exemplo, os telefones das pessoas foram isolados na tabela `TELEFONE`. Da mesma forma, os exercícios foram organizados na tabela `EXERCICIO`. |
+| **2ª Forma Normal (2FN)** | O modelo atende à Segunda Forma Normal porque todos os atributos não-chave dependem integralmente da chave primária de suas tabelas. Na tabela `TREINO_EXERCICIO` (PK composta por `ID_TREINO` e `ID_EXERCICIO`), os atributos `QT_SERIES`, `QT_REPETICOES`, `VR_CARGA` e `QT_INTERVALO_SEG` dependem funcionalmente da combinação de ambas as chaves. |
+| **3ª Forma Normal (3FN)** | O modelo atende à Terceira Forma Normal ao eliminar dependências transitivas entre atributos não-chave. As informações foram distribuídas em entidades próprias (`PESSOA`, `ALUNO`, `INSTRUTOR`, `PLANO`, `MATRICULA`, `PAGAMENTO`), evitando repetição de dados pessoais ou comerciais em tabelas distintas. |
+
+---
+
+### 1.5 Justificativas Técnicas das Decisões
+
+#### Justificativa das chaves primárias
+
+| Tabela | Chave primária | Justificativa |
 | :--- | :--- | :--- |
-| Pessoa | id_pessoa | nome, cpf, email, telefone |
-| Aluno | id_pessoa (herdado) | dt_matricula, ds_objetivo, vr_peso, vr_altura |
-| Instrutor | id_pessoa (herdado) | cd_cref, ds_especialidade, dt_admissao |
-| Fornecedor | id_fornecedor | nm_fornecedor, cnpj, email |
-| Plano | id_plano | nm_plano, vr_valor, qt_duracao_meses |
-| Matrícula | id_matricula | dt_inicio, dt_fim, tp_status |
-| Pagamento | id_pagamento | vr_valor, dt_vencimento, tp_status_pagamento |
-| Acesso | id_acesso | dt_hora_entrada |
-| Treino | id_treino | id_exercicio, qt_series, qt_repeticoes |
-| Exercício | id_exercicio | nm_exercicio, tp_grupo_muscular, ds_declaracao |
-| Avaliação Física | id_avaliacao | dt_avaliacao, vr_peso, vr_altura |
-| Equipamento | id_equipamento | nm_equipamento, qt_quantidade, tp_status |
-| Manutenção | id_manutencao | dt_manutencao, vr_custo, tp_status |
- 
-Todos os atributos do modelo são simples e monovalorados; não há atributos compostos nem derivados.
- 
-### Relacionamentos pertinentes
- 
-Cardinalidades na notação (mínima, máxima) do BRModelo, lidas conforme aparecem no DER:
- 
-| Relacionamento | Entidades e cardinalidades | Leitura |
+| `PESSOA` | `ID_PESSOA` | Identifica cada pessoa cadastrada de maneira única. |
+| `TELEFONE` | `ID_TELEFONE` | Identifica individualmente cada telefone cadastrado. |
+| `ALUNO` | `ID_PESSOA` | Reutiliza o identificador da pessoa para identificar o aluno como uma especialização de PESSOA. |
+| `INSTRUTOR` | `ID_PESSOA` | Reutiliza o identificador da pessoa para identificar o instrutor como uma especialização de PESSOA. |
+| `PLANO` | `ID_PLANO` | Identifica cada plano oferecido pela academia. |
+| `MATRICULA` | `ID_MATRICULA` | Identifica individualmente cada matrícula realizada. |
+| `PAGAMENTO` | `ID_PAGAMENTO` | Identifica cada registro de pagamento. |
+| `ACESSO` | `ID_ACESSO` | Identifica cada registro de entrada do aluno na academia. |
+| `AVALIACAO_FISICA` | `ID_AVALIACAO` | Identifica individualmente cada avaliação física registrada. |
+| `TREINO` | `ID_TREINO` | Identifica cada treino elaborado para um aluno. |
+| `EXERCICIO` | `ID_EXERCICIO` | Identifica cada exercício cadastrado. |
+| `TREINO_EXERCICIO` | `ID_TREINO` + `ID_EXERCICIO` | Formam uma chave primária composta para identificar a associação entre um treino e um exercício, evitando associações duplicadas. |
+| `FORNECEDOR` | `ID_FORNECEDOR` | Identifica individualmente cada fornecedor cadastrado. |
+| `EQUIPAMENTO` | `ID_EQUIPAMENTO` | Identifica cada equipamento registrado no sistema. |
+| `MANUTENCAO` | `ID_MANUTENCAO` | Identifica cada registro de manutenção realizado. |
+| `CONTAS_A_PAGAR` | `ID_CONTA_PAGAR` | Identifica cada despesa ou obrigação financeira cadastrada. |
+
+#### Justificativa das chaves estrangeiras e dos relacionamentos
+
+| Relacionamento | Chave estrangeira | Justificativa |
 | :--- | :--- | :--- |
-| **Monta** | Instrutor (0,n) — Treino (1,1) | Um instrutor monta vários treinos; cada treino é montado por um único instrutor. |
-| **Segue** | Aluno (0,n) — Treino (1,1) | Um aluno segue vários treinos ao longo do tempo; cada treino pertence a um único aluno. |
-| **Compõe** | Exercício (0,n) — Treino (1,n) | Cada treino é composto por um ou mais exercícios; um exercício pode compor vários treinos (N:M). |
-| **Aplica** | Instrutor (0,n) — Avaliação Física (1,1) | Um instrutor aplica várias avaliações; cada avaliação é aplicada por um único instrutor. |
-| **Realiza** | Aluno (0,n) — Avaliação Física (1,1) | Um aluno realiza várias avaliações; cada avaliação pertence a um único aluno. |
-| **Possui** | Aluno (0,n) — Matrícula (1,1) | Um aluno pode ter várias matrículas ao longo do tempo; cada matrícula pertence a um único aluno. |
-| **Refere-se a** | Matrícula (1,1) — Plano (0,n) | Cada matrícula refere-se a um único plano; um plano pode estar em várias matrículas. |
-| **Gera** | Matrícula (0,n) — Pagamento (1,1) | Uma matrícula gera vários pagamentos; cada pagamento pertence a uma única matrícula. |
-| **Registra** | Matrícula (0,n) — Acesso (1,1) | Uma matrícula registra vários acessos; cada acesso pertence a uma única matrícula. |
-| **Fornece** | Fornecedor (0,n) — Equipamento (1,1) | Um fornecedor fornece vários equipamentos; cada equipamento tem um único fornecedor. |
-| **Recebe** | Equipamento (0,n) — Manutenção (1,1) | Um equipamento recebe várias manutenções; cada manutenção refere-se a um único equipamento. |
- 
-**Generalização:** Aluno, Instrutor e Fornecedor são especializações de Pessoa, do tipo **parcial e compartilhada (p, c)**. Parcial porque uma pessoa pode existir sem assumir nenhum desses papéis; compartilhada porque a mesma pessoa pode assumir mais de um (por exemplo, um instrutor que também é aluno).
- 
-### Restrições e políticas organizacionais aplicadas ao modelo
- 
-- **CPF e CNPJ únicos:** impedem cadastros duplicados de pessoas e de fornecedores.
-- **Matrícula como eixo financeiro e de frequência:** pagamentos e acessos pertencem a uma matrícula, que por sua vez pertence a um aluno e a um plano. Matrícula não ativa não permite novos acessos.
-- **Todo treino tem aluno e instrutor responsáveis** (cardinalidade mínima 1 nos dois relacionamentos).
-- **Todo equipamento tem fornecedor, e toda manutenção tem equipamento** cadastrados previamente.
-- **Situação de equipamentos e matrículas** controlada por atributos de status, evitando que itens indisponíveis sejam tratados como disponíveis.
-- **Proteção de dados pessoais e de saúde (LGPD):** peso, altura e avaliações físicas devem ter acesso restrito a perfis autorizados.
----
- 
-## 7. Diagrama Entidade-Relacionamento (DER)
- 
-O DER conceitual revisado está disponível em [`docs/diagramas/DER_Conceitual.pdf`](docs/diagramas/DER_Conceitual.pdf), e o modelo lógico em [`docs/diagramas/Modelo_Logico.png`](docs/diagramas/Modelo_Logico.png).
- 
-O DER foi elaborado no BRModelo Web, com notação (mínima, máxima) para as cardinalidades. Ele representa:
- 
-- **Entidades:** Pessoa, Aluno, Instrutor, Fornecedor, Plano, Matrícula, Pagamento, Acesso, Treino, Exercício, Avaliação Física, Equipamento e Manutenção;
-- **Atributos** de cada entidade, com os identificadores marcados como (PK);
-- **Relacionamentos** com suas cardinalidades, detalhados na Seção 6;
-- **Generalização/especialização** de Pessoa em Aluno, Instrutor e Fornecedor.
----
- 
-## 8. Justificativa Técnica
- 
-A modelagem do banco de dados da **ARGOS FITNESS** foi definida a partir dos principais processos identificados na pesquisa de campo, buscando representar de forma organizada as informações necessárias ao funcionamento da academia. As entidades, atributos, relacionamentos e cardinalidades foram escolhidos considerando a realidade observada, evitando tanto estruturas desnecessárias quanto a concentração excessiva de informações em uma única entidade.
- 
-### Pessoa e suas especializações
- 
-Alunos, instrutores e fornecedores compartilham dados de identificação (nome, CPF, e-mail e telefone). Em vez de repetir esses atributos em cada entidade, optou-se por uma entidade **Pessoa** como cadastro-base, com **Aluno**, **Instrutor** e **Fornecedor** como especializações. Isso reduz a redundância e permite que a mesma pessoa assuma mais de um papel (por exemplo, um instrutor que também é aluno), motivo pelo qual a generalização é **parcial e compartilhada**. O **CPF** foi definido como atributo único para evitar cadastros duplicados.
- 
-### Aluno
- 
-Foi mantida como uma das principais entidades do modelo, pois representa o elemento central dos processos analisados. Seus atributos próprios (data de matrícula, objetivo, peso e altura) acompanham o aluno e apoiam o acompanhamento de seu desenvolvimento, enquanto os dados de identificação ficam em Pessoa.
- 
-### Plano
- 
-Foi separado da entidade Aluno porque um plano é uma informação independente do aluno. Diferentes alunos podem contratar o mesmo plano, evitando repetir nome, valor e duração em cada cadastro. Isso também facilita futuras alterações nos planos oferecidos pela academia.
- 
-### Matrícula
- 
-Foi considerada uma entidade própria para representar a relação entre aluno e plano. A separação permite registrar informações específicas da contratação, como início, término e situação, e manter o histórico de diferentes períodos de matrícula. Colocar essas informações diretamente em Aluno dificultaria esse acompanhamento. A relação com Aluno é **1:N** (um aluno pode ter várias matrículas ao longo do tempo) e a relação com Plano também é **1:N** (um plano pode estar em várias matrículas).
- 
-### Pagamento
- 
-Foi criado separadamente porque uma matrícula gera diversos pagamentos ao longo do tempo, estabelecendo uma relação **1:N entre Matrícula e Pagamento**. Isso mantém o histórico financeiro sem sobrescrever informações anteriores, e o aluno é identificado a partir da matrícula.
- 
-### Acesso
- 
-Foi criado para registrar as entradas na academia, já que uma mesma matrícula pode ter inúmeros registros de acesso. Estabelece-se uma relação **1:N entre Matrícula e Acesso**, que mantém o histórico de frequência sem armazená-lo no cadastro do aluno e permite verificar se a matrícula está ativa no momento da entrada.
- 
-### Instrutor, Treino e Exercício
- 
-O **Instrutor** representa os profissionais responsáveis pelos treinos e pelas avaliações, sem repetir seus dados em diferentes registros. O **Treino** armazena a ficha do aluno e se relaciona de forma **1:N** com o aluno (que pode ter diferentes fichas ao longo do tempo) e com o instrutor (que pode montar vários treinos). O **Exercício** foi separado como um catálogo reutilizável, o que gera uma relação **N:M com Treino**: cada treino é composto por um ou mais exercícios, e um mesmo exercício pode compor vários treinos. Dessa forma, o exercício é cadastrado uma única vez, sem repetição em cada ficha.
- 
-### Avaliação Física
- 
-Foi criada separadamente porque um aluno realiza várias avaliações ao longo do tempo, e cada registro preserva as medidas daquele momento, permitindo acompanhar a evolução física. Cada avaliação se relaciona a um único aluno e a um único instrutor (relações **1:N** com ambos).
- 
-### Fornecedor, Equipamento e Manutenção
- 
-Um **Fornecedor** pode fornecer diversos equipamentos, enquanto cada equipamento é associado a um fornecedor (relação **1:N**). Um equipamento também pode passar por diversas manutenções ao longo da vida útil, por isso a relação entre **Equipamento e Manutenção** também é **1:N**. A entidade **Manutenção** foi criada separadamente porque um mesmo equipamento pode apresentar diferentes ocorrências ao longo do tempo. Registrar cada manutenção individualmente permite armazenar data, custo e situação, preservando o histórico do equipamento.
- 
-### Atributos, chaves e cardinalidades
- 
-Os atributos foram selecionados para representar apenas informações relevantes aos processos identificados. As **chaves primárias** identificam cada registro de forma única, e as **chaves estrangeiras**, definidas a partir dos relacionamentos, garantem a integridade referencial.
- 
-As cardinalidades seguem as regras observadas na organização. Por exemplo, uma matrícula pode ter vários pagamentos e vários acessos, enquanto cada pagamento e cada acesso pertencem a uma matrícula específica. Da mesma forma, um equipamento pode ter várias manutenções, mas cada manutenção está associada a um único equipamento.
- 
-### Redundância e simplicidade
- 
-Separar as entidades, em vez de concentrar tudo em uma única estrutura, reduz a **redundância de dados**, facilita atualizações e preserva a consistência. Por outro lado, não foram criadas entidades para informações sem relevância suficiente para os processos analisados, evitando uma modelagem excessivamente complexa.
- 
-### Conclusão
- 
-As decisões de abstração e modelagem buscam equilibrar **representatividade, simplicidade, integridade e possibilidade de expansão**. O modelo representa os processos reais da ARGOS FITNESS de maneira estruturada, permitindo que o banco de dados acompanhe as necessidades atuais da organização e seja ampliado caso novos processos ou informações sejam incorporados.
- 
+| PESSOA e TELEFONE | `TELEFONE.ID_PESSOA` | Permite associar um ou mais telefones a uma pessoa cadastrada, evitando armazenar vários números em um único campo. |
+| PESSOA e ALUNO | `ALUNO.ID_PESSOA` | Relaciona o cadastro específico do aluno aos seus dados gerais armazenados em PESSOA. |
+| PESSOA e INSTRUTOR | `INSTRUTOR.ID_PESSOA` | Relaciona o cadastro do instrutor aos seus dados pessoais armazenados em PESSOA. |
+| ALUNO e MATRICULA | `MATRICULA.ID_ALUNO` | Permite associar cada matrícula ao aluno correspondente, possibilitando que um aluno possua diferentes registros de matrícula. |
+| PLANO e MATRICULA | `MATRICULA.ID_PLANO` | Identifica o plano contratado em cada matrícula, permitindo que um mesmo plano seja utilizado em diferentes matrículas. |
+| MATRICULA e PAGAMENTO | `PAGAMENTO.ID_MATRICULA` | Relaciona os pagamentos à matrícula correspondente, permitindo registrar diferentes pagamentos para uma mesma matrícula. |
+| MATRICULA e ACESSO | `ACESSO.ID_MATRICULA` | Associa os registros de entrada à matrícula utilizada pelo aluno para acessar a academia. |
+| ALUNO e AVALIACAO_FISICA | `AVALIACAO_FISICA.ID_ALUNO` | Permite armazenar diferentes avaliações físicas para um mesmo aluno, mantendo seu histórico de acompanhamento. |
+| ALUNO e TREINO | `TREINO.ID_ALUNO` | Identifica o aluno para o qual cada treino foi elaborado, permitindo que um aluno possua diferentes treinos ao longo do tempo. |
+| INSTRUTOR e TREINO | `TREINO.ID_INSTRUTOR` | Identifica o instrutor responsável pela elaboração de cada treino. |
+| TREINO e EXERCICIO | `TREINO_EXERCICIO.ID_TREINO` e `ID_EXERCICIO` | A tabela associativa TREINO_EXERCICIO implementa o relacionamento muitos para muitos (N:N), permitindo que um treino contenha vários exercícios e que um exercício participe de diferentes treinos. |
+| FORNECEDOR e EQUIPAMENTO | `EQUIPAMENTO.ID_FORNECEDOR` | Relaciona os equipamentos aos fornecedores responsáveis pelo seu fornecimento. |
+| EQUIPAMENTO e MANUTENCAO | `MANUTENCAO.ID_EQUIPAMENTO` | Permite associar diferentes registros de manutenção a um mesmo equipamento, mantendo seu histórico. |
+| FORNECEDOR e CONTAS_A_PAGAR | `CONTAS_A_PAGAR.ID_FORNECEDOR` | Relaciona cada obrigação financeira ao fornecedor correspondente, facilitando o controle das despesas. |
 
-## Scripts SQL
+#### Justificativa das restrições aplicadas
 
-- 📄 [Script SQL – Criação do Banco](docs/script.sql)
-- 📊 [Massa de Dados – ARGOS FITNESS](docs/massa_de_dados.sql)
+| Restrição | Aplicação no modelo | Regra de negócio relacionada |
+| :--- | :--- | :--- |
+| Unicidade da chave primária | Cada registro deve possuir um identificador exclusivo. | RN19 |
+| Unicidade do CPF | O CPF deve identificar uma única pessoa cadastrada. | RN15 |
+| Unicidade do CNPJ | O CNPJ deve identificar um único fornecedor. | RN16 |
+| Obrigatoriedade dos dados | Os campos essenciais devem ser preenchidos antes da conclusão do cadastro. | RN17 |
+| Integridade referencial | As chaves estrangeiras devem apontar para registros existentes nas tabelas relacionadas. | RN19 |
+| Situação da matrícula | O status deve representar a condição da matrícula, como ativa ou inativa. | RN07 |
+| Situação do pagamento | O pagamento deve possuir valor, data de vencimento e situação registrados. | RN05 |
+| Registro de acesso | O acesso deve estar relacionado ao aluno correspondente. | RN08 |
+| Identificação de equipamentos | Cada equipamento deve possuir um identificador próprio. | RN11 |
+| Situação de manutenção | Equipamentos em manutenção devem ter sua situação atualizada. | RN12 e RN30 |
+| Registro de contas a pagar | Cada despesa deve conter descrição, valor e data de vencimento. | RN20 |
+| Acompanhamento das despesas | As contas a pagar devem possuir situação e, quando quitadas, data de pagamento. | RN21, RN22 e RN23 |
+| Associação com fornecedor | Os registros de despesas devem permitir identificar o fornecedor relacionado, conforme o modelo. | RN24 |
 
+#### Justificativa das decisões arquiteturais gerais do modelo
+
+A arquitetura do banco de dados da ARGOS FITNESS foi organizada de forma relacional, distribuindo as informações em tabelas específicas de acordo com os principais processos da academia. A separação de `PESSOA` das tabelas `ALUNO` e `INSTRUTOR` evita duplicidades de dados cadastrais. A criação da tabela `TELEFONE` permite múltiplos contatos por pessoa. 
+
+Para a gestão de exercícios e treinos, a separação de `TREINO` e `EXERCICIO` com a tabela associativa `TREINO_EXERCICIO` oferece flexibilidade na montagem das fichas. As movimentações financeiras de receitas (`PAGAMENTO`) e despesas (`CONTAS_A_PAGAR`) foram isoladas para garantir clareza contábil. A separação entre `EQUIPAMENTO` e `MANUTENCAO` garante a rastreabilidade do histórico patrimonial, enquanto o cadastro central de `FORNECEDOR` atende tanto aos equipamentos quanto às contas a pagar.
 
 ---
- 
-## 9. Uso de Inteligência Artificial
- 
-O grupo utilizou ferramentas de IA como apoio em algumas etapas do trabalho. O registro de cada uso está abaixo.
- 
-| Item | Registro |
+
+### 1.6 Proposta de Arquitetura Analítica para BI e IA
+
+A arquitetura analítica proposta para a ARGOS FITNESS ACADEMIA visa aproveitar os dados operacionais armazenados para dar suporte às decisões gerenciais e financeiras da administração.
+
+#### Informações estratégicas para a gestão
+
+* **Gestão de alunos:** Acompanhar a quantidade de alunos cadastrados, matrículas e situações contratuais.
+* **Gestão financeira:** Monitorar recebimentos de mensalidades, faturamentos e acompanhamento de contas a pagar.
+* **Gestão de planos:** Analisar a adesão e atratividade dos planos disponibilizados.
+* **Controle de equipamentos e manutenção:** Monitorar a disponibilidade dos aparelhos e os custos acumulados com reparos.
+* **Organização de treinos:** Consultar as fichas prescritas e a frequência dos alunos.
+
+#### Indicadores e métricas gerenciais (KPIs) e Rastreabilidade
+
+| Problema ou KPI | Tabelas envolvidas | Consulta no script |
+| :--- | :--- | :--- |
+| **KPI01** — Quantidade de matrículas por situação | `MATRICULA` | `G06` — Total de matrículas agrupadas por situação |
+| **KPI02** — Valor total de pagamentos por situação | `PAGAMENTO` | `G07` — Soma dos valores de pagamentos por situação |
+| **KPI03** — Custo de manutenção por mês | `MANUTENCAO` | `G08` — Soma dos custos de manutenção agrupados por mês |
+| **KPI04** — Quantidade de equipamentos por situação | `EQUIPAMENTO` | `G09` — Total de equipamentos agrupados por situação |
+| **KPI05** — Frequência de acessos por mês | `ACESSO`, `MATRICULA` | `G10` — Quantidade de acessos agrupados por mês |
+| **KPI06** — Total de contas a pagar por situação | `CONTAS_A_PAGAR` | `G11` — Soma dos valores de contas a pagar agrupados por situação |
+
+---
+
+## 2. Modelo Lógico Relacional
+
+O Modelo Lógico Relacional foi desenvolvido utilizando a ferramenta **brModelo**.
+
+ **[Clique aqui para abrir o Dicionário de Dados em HTML (`docs/dicionario_de_dados.html`)](./docs/dicionario_de_dados.html)**
+
+*O modelo contempla todas as tabelas, tipos físicos de dados (`INT`, `VARCHAR`, `DECIMAL`, `DATE`, `DATETIME`), chaves primárias (PK), chaves estrangeiras (FK) e cardinalidades já convertidas.*
+
+---
+
+## 3. Script SQL Completo
+
+O script SQL completo (contendo DDL de criação do banco e tabelas, constraints, DML de carga e consultas SQL gerenciais/auditoria) está armazenado na pasta `docs/`:
+
+ **[Clique aqui para abrir o Script SQL (`docs/script.sql`)](./docs/script.sql)**
+
+---
+
+## 4. Massa de Dados
+
+A massa de dados fictícia foi gerada de forma proporcional e consistente com o porte real da ARGOS FITNESS (aprox. 250 alunos, 18 funcionários, 45 equipamentos). Ela permite validar cenários operacionais reais, como pagamentos em dia/atrasados, manutenções em aberto/concluídas e registros diários de acesso à catraca.
+
+A massa de dados está integrada no próprio arquivo do script SQL:
+ **[Clique aqui para acessar a Carga de Dados no Script SQL (`docs/script.sql`)](./docs/script.sql)**
+
+---
+
+## 5. Repositório GitHub e Dicionário de Dados
+
+Os artefatos finais estão organizados na estrutura de arquivos do repositório:
+
+* **Relatório Técnico Final:** No próprio arquivo `README.md` na raiz da branch `main`.
+* **Dicionário de Dados (HTML):** Página HTML completa em navegação web: [ `docs/dicionario_de_dados.html`](./docs/dicionario_de_dados.html)
+* **Modelo Conceitual (DER em PDF):** Diagrama na notação brModelo em PDF: [ `DER_Conceitual.pdf`](./DER_Conceitual.pdf)
+* **Levantamento de Campo:** Pasta dedicada com o detalhamento das entrevistas e observações: [ `levantamento/levantamento.md`](./levantamento/levantamento.md)
+* **Script SQL Completo:** Pasta de documentação técnica: [ `docs/script.sql`](./docs/script.sql)
+
+---
+
+## 6. Uso de Inteligência Artificial
+
+| Item | Registro de Uso |
 | :--- | :--- |
-| **Ferramenta e etapa** | **Dicionário de Dados:** ChatGPT e Gemini.<br>**DER (Diagrama Entidade-Relacionamento):** ChatGPT.<br>**Regras de Negócio:** ChatGPT.<br>**Caracterização da Organização:** ChatGPT. |
-| **Motivação** | **Dicionário de Dados:** o ChatGPT e o Gemini foram utilizados como ferramenta de apoio na estruturação e padronização inicial do Dicionário de Dados, visando facilitar a organização e o alinhamento com as entidades do DER.<br>**DER:** o ChatGPT foi consultado para compreender melhor as diferenças de representação e aplicação de cardinalidades entre a modelagem conceitual teórica do documento e o padrão da ferramenta BRModelo.<br>**Regras de Negócio:** o ChatGPT foi utilizado para ajudar a identificar e redigir de forma clara as regras operacionais com base nos processos de uma academia de pequeno porte.<br>**Caracterização da Organização:** auxílio na estruturação e revisão do texto descritivo sobre o porte, funcionamento e contexto da Argos Fitness a partir das anotações da pesquisa de campo. |
-| **Prompt(s) utilizados** | **Dicionário de Dados:** "Como estruturar o dicionário de dados em formato de tabela para um sistema de academia contendo entidades como Aluno, Plano, Pagamento e Equipamento?"<br>**DER:** "Qual a diferença de notação de cardinalidade 1 para N e N para N entre o DER conceitual padrão e ferramentas práticas de modelagem?"<br>**Regras de Negócio:** "Quais são as regras de negócio essenciais para o controle de matrículas, pagamentos e manutenção de equipamentos em uma academia?" <br>**Caracterização da Organização:** o prompt exato não foi registrado pelo grupo. O pedido foi para estruturar e revisar o texto descritivo sobre porte, funcionamento e contexto da Argos Fitness, a partir das anotações da pesquisa de campo. |
-| **Resposta recebida** | **Dicionário de Dados:** a IA respondeu sugerindo o uso de tabelas padronizadas contendo as colunas Atributo, Descrição e Regra de negócio associada, exemplificando com chaves primárias (ID_ALUNO) e chaves estrangeiras (ID_PLANO), além de recomendar o uso de prefixos como NM_ para nomes e DT_ para datas.<br>**DER:** a IA explicou que a cardinalidade 1:N significa que um registro de uma entidade se liga a vários de outra (ex.: um Aluno possui vários Pagamentos), enquanto a relação N:N (muitos para muitos) entre Treino e Exercício exige obrigatoriamente a criação de uma entidade associativa intermediária.<br>**Regras de Negócio:** a IA gerou diretrizes como "Um aluno só pode se matricular se tiver cadastro ativo", "Um pagamento deve estar vinculado a um aluno e plano" e "Equipamentos em manutenção não podem constar como disponíveis para uso". <br>**Caracterização da Organização:**  a IA sugeriu um texto abordando a natureza com fins lucrativos, estimativa de 300 alunos, 25 colaboradores, funcionamento de segunda a sábado, e apontando o uso de papéis físicos como problema principal de gestão. |
-| **Fontes consultadas e verificadas** | As sugestões geradas pelas ferramentas de IA foram rigorosamente comparadas e validadas com a realidade observada na pesquisa de campo realizada presencialmente na Argos Fitness (regras reais de mensalidades, modalidades oferecidas e controle de acesso local). |
-| **Trechos rejeitados ou corrigidos** | **Dicionário de Dados:** algumas sugestões iniciais traziam atributos excessivos ou complexos demais para o porte da academia (como controle de catraca digital avançada e biometria), que foram descartados por não fazerem parte da realidade atual da organização.<br>**Regras de Negócio:** respostas genéricas da IA que sugerem integrações automáticas com bancos externos ou taxas bancárias complexas foram removidas para focar exclusivamente nos processos manuais/simples observados na empresa. |
-| **Justificativa da escolha final** | O grupo manteve apenas as estruturas, atributos e regras que se alinham diretamente ao porte da Argos Fitness e aos limites propostos pelo escopo do trabalho acadêmico, garantindo simplicidade e aplicabilidade real. |
-| **Reflexão crítica** | Identificou-se que a IA tende a generalizar processos de grandes redes de academias, sugerindo automações complexas incompatíveis com uma organização de pequeno porte. O uso exigiu constante senso crítico do grupo para filtrar alucinações e excessos tecnológicos, garantindo que o modelo refletisse fielmente a realidade da empresa estudada. |
+| **Ferramentas e Etapas** | **ChatGPT e Gemini** utilizados no levantamento de processos, requisitos funcionais/não funcionais, pesquisa de regras de negócio em academias, apoio no processo de normalização (1FN a 3FN), geração da massa de dados fictícia e apoio à construção de consultas SQL. |
+| **Motivação** | Agilizar pesquisas sobre processos típicos do segmento de academias, estruturar rascunhos de tabelas normalizadas e gerar grandes volumes de dados fictícios coerentes para inserção SQL. |
+| **Prompts utilizados** | Solicitação para estruturar tabelas de banco de dados relacional para gestão de academias, validação de chaves em 3FN e geração de dados fictícios em sintaxe MySQL. |
+| **Resposta recebida** | Sugestões de atributos, relacionamentos, modelos de regras operacionais e scripts SQL com inserções de exemplo. |
+| **Fontes consultadas** | As sugestões foram comparadas e validadas diretamente com as informações obtidas na entrevista com o responsável da ARGOS FITNESS e com a documentação do MySQL 8.0. |
+| **Trechos rejeitados/corrigidos** | Foram descartadas sugestões de módulos complexos de agendamento de aulas em grupo, integração bancária direta de PIX/boletos, aplicativo próprio e catraca com biometria facial, pois não faziam parte da realidade comprovada na academia. |
+| **Justificativa da escolha final** | As respostas das IAs foram utilizadas apenas como ferramenta de apoio à escrita e geração de dados de teste, permanecendo todas as decisões de modelagem sob responsabilidade exclusiva do grupo. |
+| **Reflexão crítica** | A Inteligência Artificial acelerou a produção da documentação e a criação de testes, porém exigiu rigorosa análise crítica para evitar a inclusão de funcionalidades genéricas desnecessárias ou incompatíveis com o escopo real da organização estudada. |
 
+---
+
+## 7. Apresentação Corporativa Final
+
+Roteiro cronometrado (Pitch de 8 minutos):
+1. **Contextualização:** Apresentação da ARGOS FITNESS e dos problemas enfrentados com a dispersão de dados em cadernos/planilhas.
+2. **Solução Proposta:** Apresentação do sistema de banco de dados relacional centralizado.
+3. **Modelo Lógico:** Demonstração da estrutura de tabelas, chaves e normalização.
+4. **Demonstração SQL:** Execução ao vivo do script no MySQL.
+5. **Consultas de Impacto:** Validação de consultas gerenciais (KPIs) e de auditoria de dados.
+6. **Potencial BI/IA:** Apresentação dos caminhos para análises preditivas financeiras e de manutenção.
+7. **Benefícios Diretos:** Conclusão demonstrando a otimização de tempo, controle financeiro e facilidade operacional para a gestão.
