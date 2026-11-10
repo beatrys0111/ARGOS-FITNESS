@@ -48,7 +48,7 @@
 * **Comprovação:** Evidências registradas em imagem e documento na pasta do projeto.
 * **Resumo do levantamento:** Foram confirmados os procedimentos operacionais e administrativos da ARGOS FITNESS, incluindo cadastro de alunos, acompanhamento de matrículas, gerenciamento de planos, fluxo de pagamentos, registro de acessos, cadastro de instrutores e montagem de treinos/exercícios. Além disso, identificaram-se as rotinas de cadastro de fornecedores, controle de equipamentos, manutenções e a necessidade de controle de contas a pagar.
 
- **[Clique aqui para acessar o Documento Completo do Levantamento na pasta(`levantamento/Levantamento.md`)](./levantamento/Levantamento.md )
+ [Clique aqui para acessar o Documento Completo do Levantamento na pasta(`levantamento/Levantamento.md`)](./levantamento/Levantamento.md )
 
 ---
 
