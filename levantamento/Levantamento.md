@@ -4,7 +4,7 @@ Para aprofundar o levantamento realizado na Entrega 1, foram analisadas as rotin
 
 Durante o levantamento, foram abordados os seguintes assuntos:
 
-* **Cadastro e matrícula dos alunos:** foram questionados os dados solicitados no cadastro, a obrigatoriedade do CPF, os critérios de idade, os contatos necessários e as situações possíveis do cadastro.  
+**Cadastro e matrícula dos alunos:** foram questionados os dados solicitados no cadastro, a obrigatoriedade do CPF, os critérios de idade, os contatos necessários e as situações possíveis do cadastro.  
 * **Planos e matrículas:** foram investigados os tipos de planos oferecidos, seus valores, os dias de vencimento, as possibilidades de troca de plano e as regras de cancelamento.  
 * **Pagamentos:** foram levantadas as formas de pagamento aceitas, como PIX, cartão e dinheiro, além dos procedimentos de registro, acompanhamento de pendências e prazo de tolerância para atrasos.  
 * **Saúde dos alunos:** foram investigadas as informações registradas na anamnese, a exigência e a validade dos atestados médicos, bem como as pessoas autorizadas a consultar esses dados.  
