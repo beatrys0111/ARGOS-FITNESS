@@ -1,4 +1,3 @@
-
 # Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
 
 ### Modelagem de um sistema de gestão de informações para a ARGOS FITNESS ACADEMIA
