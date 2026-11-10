@@ -1,6 +1,12 @@
 # Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
 
 ### Modelagem de um sistema de gestão de informações para a ARGOS FITNESS ACADEMIA
+### Documentos atualizados     
+
+- **DER conceitual revisado:** [DER_Conceitual.pdf](docs/diagramas/DER_Conceitual.pdf)
+- **Modelo lógico revisado:** [Modelo_Logico.png](docs/diagramas/Modelo_Logico.png)
+- **Dicionário de Dados v2.0 (HTML):** [abrir dicionário](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
+- **Levantamento:** [abrir levantamento](levantamento/Levantamento.md)
 
 ---
 
@@ -131,7 +137,7 @@
 
 O Diagrama Entidade-Relacionamento (DER) conceitual do sistema foi desenvolvido utilizando a ferramenta **brModelo**.
 
- **[Clique aqui para abrir o PDF do DER Conceitual (`docs/DER_Conceitual.pdf`)](DER_Conceitual.pdf)**
+ **[Clique aqui para abrir o PDF do DER Conceitual [DER_Conceitual.pdf](docs/diagramas/DER_Conceitual.pdf)
 
 ### ***Revisão do DER conceitual – Entrega 1***
 
@@ -283,10 +289,11 @@ A arquitetura analítica proposta para a ARGOS FITNESS ACADEMIA visa aproveitar 
 ---
 
 ## 2. Modelo Lógico Relacional
+ **Modelo lógico revisado:** [Modelo_Logico.png](docs/diagramas/Modelo_Logico.png)
 
 O Modelo Lógico Relacional foi desenvolvido utilizando a ferramenta **brModelo**.
 
- **[Clique aqui para abrir o Dicionário de Dados em HTML (`docs/dicionario_de_dados.html`)](./docs/dicionario_de_dados.html)**
+
 
 *O modelo contempla todas as tabelas, tipos físicos de dados (`INT`, `VARCHAR`, `DECIMAL`, `DATE`, `DATETIME`), chaves primárias (PK), chaves estrangeiras (FK) e cardinalidades já convertidas.*
 
@@ -296,16 +303,17 @@ O Modelo Lógico Relacional foi desenvolvido utilizando a ferramenta **brModelo*
 
 O script SQL de estrutura (criação do banco, tabelas e restrições) está armazenado na pasta `docs/`. A carga de dados de teste está em um arquivo separado:
 
- **[Clique aqui para abrir o Script SQL (`docs/script.sql`)](./docs/script.sql)**
+ **[Clique aqui para acessar o Script SQL Completo:**
+ [script.sql](docs/script.sql)
+ 
 
----
 
 ## 4. Massa de Dados
 
 A massa de dados fictícia foi gerada de forma proporcional e consistente com o porte real da ARGOS FITNESS (aprox. 250 alunos, 18 funcionários, 45 equipamentos). Ela permite validar cenários operacionais reais, como pagamentos em dia/atrasados, manutenções em aberto/concluídas e registros diários de acesso à catraca.
 
 A massa de dados está integrada no próprio arquivo do script SQL:
- **[Clique aqui para acessar a Carga de Dados no Script SQL (`docs/script.sql`)](script.sql)
+ **[Clique aqui para acessar a Carga de Dados no Script SQL (massa_de_dados.sql)](docs/massa_de_dados.sql)
 
 ---
 
@@ -313,11 +321,10 @@ A massa de dados está integrada no próprio arquivo do script SQL:
 
 Os artefatos finais estão organizados na estrutura de arquivos do repositório:
 
-* **Relatório Técnico Final:** No próprio arquivo `README.md` na raiz da branch `main`.
-* **Dicionário de Dados (HTML):** Página HTML completa em navegação web: [ `docs/dicionario_de_dados.html`](Dicionario-de-Dados-Argos-Fitness.html)
-* **Modelo Conceitual (DER em PDF):** Diagrama na notação brModelo em PDF: [ `DER_Conceitual.pdf`](DER_Conceitual.pdf)
-* **Levantamento de Campo:** Pasta dedicada com o detalhamento das entrevistas e observações: [ `levantamento/levantamento.md`](levantamento/Levantamento.md)
-* **Script SQL Completo:** Pasta de documentação técnica: [ `docs/script.sql`](script.sql)
+**DER conceitual revisado:** [DER_Conceitual.pdf](docs/diagramas/DER_Conceitual.pdf)
+- **Modelo lógico revisado:** [Modelo_Logico.png](docs/diagramas/Modelo_Logico.png)
+- **Dicionário de Dados v2.0 (HTML):** [abrir dicionário](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
+- **Levantamento:** [abrir levantamento](levantamento/Levantamento.md)
 
 ---
 
