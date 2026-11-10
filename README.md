@@ -104,11 +104,7 @@ Durante a pesquisa de campo na **ARGOS FITNESS**, foram identificados os seguint
 | 9 | **Manutenção de equipamentos** | Registro de manutenções preventivas e corretivas, problemas identificados, serviços realizados, custos e próximas revisões. |
 | 10 | **Gestão de fornecedores** | Cadastro e acompanhamento das empresas responsáveis pelo fornecimento de equipamentos, materiais e serviços de manutenção. |
  
-### Fluxogramas
- 
-<!-- Opcional: anexar imagens dos fluxogramas dos processos-chave. Exemplo: ![Fluxograma](docs/fluxograma.png) -->
- 
-*Não se aplica / em elaboração.*
+
  
 ---
  
