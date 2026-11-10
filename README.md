@@ -294,7 +294,7 @@ O Modelo Lógico Relacional foi desenvolvido utilizando a ferramenta **brModelo*
 
 ## 3. Script SQL Completo
 
-O script SQL completo (contendo DDL de criação do banco e tabelas, constraints, DML de carga e consultas SQL gerenciais/auditoria) está armazenado na pasta `docs/`:
+O script SQL de estrutura (criação do banco, tabelas e restrições) está armazenado na pasta `docs/`. A carga de dados de teste está em um arquivo separado:
 
  **[Clique aqui para abrir o Script SQL (`docs/script.sql`)](./docs/script.sql)**
 
