@@ -50,6 +50,9 @@
 
   [Clique aqui para acessar o Documento Completo do Levantamento na pasta(`levantamento/Levantamento.md`)](./levantamento/Levantamento.md )
 
+  <img width="1200" height="1600" alt="FOTO ARGOSS FITNESS" src="https://github.com/user-attachments/assets/64ce0184-ad6d-450a-9f0a-6027df75c702" />
+
+
 <img width="1200" height="1600" alt="FOTO ENTREVISTA" src="https://github.com/user-attachments/assets/a1b8cbc8-a924-4260-8dbb-d6552a743a0e" />
 
 ---
