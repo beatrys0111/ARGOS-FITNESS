@@ -132,7 +132,7 @@
 
 O Diagrama Entidade-Relacionamento (DER) conceitual do sistema foi desenvolvido utilizando a ferramenta **brModelo**.
 
- **[Clique aqui para abrir o PDF do DER Conceitual (`DER_Conceitual.pdf`)]( DER_Conceitual.pdf)**
+ **[Clique aqui para abrir o PDF do DER Conceitual (`DER_Conceitual.pdf`)](DER_Conceitual.pdf)**
 
 ### ***Revisão do DER conceitual – Entrega 1***
 
