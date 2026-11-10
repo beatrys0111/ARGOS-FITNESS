@@ -317,7 +317,7 @@ O script SQL de estrutura (criação do banco, tabelas e restrições) está arm
 A massa de dados fictícia foi gerada de forma proporcional e consistente com o porte real da ARGOS FITNESS (aprox. 250 alunos, 18 funcionários, 45 equipamentos). Ela permite validar cenários operacionais reais, como pagamentos em dia/atrasados, manutenções em aberto/concluídas e registros diários de acesso à catraca.
 
 A massa de dados está integrada no próprio arquivo do script SQL:
- **[Clique aqui para acessar a Carga de Dados no Script SQL (massa_de_dados.sql)](docs/massa_de_dados.sql)
+ [Clique aqui para acessar a Carga de Dados no Script SQL (massa_de_dados.sql)](docs/massa_de_dados.sql)
 
 ---
 
