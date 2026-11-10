@@ -132,7 +132,7 @@
 
 O Diagrama Entidade-Relacionamento (DER) conceitual do sistema foi desenvolvido utilizando a ferramenta **brModelo**.
 
- **[Clique aqui para abrir o PDF do DER Conceitual (`DER_Conceitual.pdf`)](./DER_Conceitual.pdf)**
+ **[Clique aqui para abrir o PDF do DER Conceitual (`DER_Conceitual.pdf`)]( DER_Conceitual.pdf)**
 
 ### ***Revisão do DER conceitual – Entrega 1***
 
@@ -306,7 +306,7 @@ O script SQL completo (contendo DDL de criação do banco e tabelas, constraints
 A massa de dados fictícia foi gerada de forma proporcional e consistente com o porte real da ARGOS FITNESS (aprox. 250 alunos, 18 funcionários, 45 equipamentos). Ela permite validar cenários operacionais reais, como pagamentos em dia/atrasados, manutenções em aberto/concluídas e registros diários de acesso à catraca.
 
 A massa de dados está integrada no próprio arquivo do script SQL:
- **[Clique aqui para acessar a Carga de Dados no Script SQL (`docs/script.sql`)](./docs/script.sql)**
+ **[Clique aqui para acessar a Carga de Dados no Script SQL (`docs/script.sql`)](script.sql)
 
 ---
 
@@ -315,10 +315,10 @@ A massa de dados está integrada no próprio arquivo do script SQL:
 Os artefatos finais estão organizados na estrutura de arquivos do repositório:
 
 * **Relatório Técnico Final:** No próprio arquivo `README.md` na raiz da branch `main`.
-* **Dicionário de Dados (HTML):** Página HTML completa em navegação web: [ `docs/dicionario_de_dados.html`](./docs/dicionario_de_dados.html)
-* **Modelo Conceitual (DER em PDF):** Diagrama na notação brModelo em PDF: [ `DER_Conceitual.pdf`](./DER_Conceitual.pdf)
-* **Levantamento de Campo:** Pasta dedicada com o detalhamento das entrevistas e observações: [ `levantamento/levantamento.md`](./levantamento/levantamento.md)
-* **Script SQL Completo:** Pasta de documentação técnica: [ `docs/script.sql`](./docs/script.sql)
+* **Dicionário de Dados (HTML):** Página HTML completa em navegação web: [ `docs/dicionario_de_dados.html`](Dicionario-de-Dados-Argos-Fitness.html)
+* **Modelo Conceitual (DER em PDF):** Diagrama na notação brModelo em PDF: [ `DER_Conceitual.pdf`](DER_Conceitual.pdf)
+* **Levantamento de Campo:** Pasta dedicada com o detalhamento das entrevistas e observações: [ `levantamento/levantamento.md`](levantamento/Levantamento.md)
+* **Script SQL Completo:** Pasta de documentação técnica: [ `docs/script.sql`](script.sql)
 
 ---
 
