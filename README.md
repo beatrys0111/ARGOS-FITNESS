@@ -458,6 +458,12 @@ Separar as entidades, em vez de concentrar tudo em uma única estrutura, reduz a
  
 As decisões de abstração e modelagem buscam equilibrar **representatividade, simplicidade, integridade e possibilidade de expansão**. O modelo representa os processos reais da ARGOS FITNESS de maneira estruturada, permitindo que o banco de dados acompanhe as necessidades atuais da organização e seja ampliado caso novos processos ou informações sejam incorporados.
  
+## Script SQL
+
+O script SQL completo do banco de dados da ARGOS FITNESS está disponível no repositório.
+
+📄 [Acessar script SQL completo](docs/script.sql)
+
 ---
  
 ## 9. Uso de Inteligência Artificial
