@@ -52,8 +52,6 @@
 
 <img width="1200" height="1600" alt="FOTO ENTREVISTA" src="https://github.com/user-attachments/assets/a1b8cbc8-a924-4260-8dbb-d6552a743a0e" />
 
-
-
 ---
 
 #### Detalhamento de Processos, Requisitos e Regras de Negócio
