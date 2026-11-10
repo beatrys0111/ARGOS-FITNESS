@@ -12,9 +12,7 @@ Esta versão reúne os documentos revisados do sistema ARGOS FITNESS.
 
 O modelo documenta pessoas, alunos, instrutores, telefones, matrículas, planos, pagamentos, acessos, treinos, exercícios, avaliações físicas, fornecedores, equipamentos, manutenção e contas a pagar. A entidade ESTOQUE não faz parte desta versão.
                                                     
-> **Nota:** o script SQL será incluído posteriormente. As restrições de integridade e regras físicas do banco deverão ser conferidas junto à implementação.
 
-                 
 ---
 
 # ARGOS FITNESS — Sistema de Gestão de Academia
