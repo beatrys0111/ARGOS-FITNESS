@@ -16,8 +16,8 @@
 
 | Nome completo do aluno | RGM | Usuário do GitHub |
 | :---- | :---- | :---- |
-| Beatrys Anunciato de Lima |  48219886 | [beatrys0111](https://github.com/beatrys0111) |
-| Kauanny Duarte Santos |  48164143 | [kauannyduartesantos](https://github.com/kauannyduartesantos) |
+| Beatrys Anunciato de Lima | 48219886 | [beatrys0111](https://github.com/beatrys0111) |
+| Kauanny Duarte Santos | 48164143 | [kauannyduartesantos](https://github.com/kauannyduartesantos) |
 | Paulo Henrique Quintiliano | 48179060 | [peaga19](https://github.com/peaga19) |
 
 ---
