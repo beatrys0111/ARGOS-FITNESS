@@ -43,7 +43,7 @@
 * **Comprovação:** Evidências registradas em imagem e documento na pasta do projeto.
 * **Resumo do levantamento:** Foram confirmados os procedimentos operacionais e administrativos da ARGOS FITNESS, incluindo cadastro de alunos, acompanhamento de matrículas, gerenciamento de planos, fluxo de pagamentos, registro de acessos, cadastro de instrutores e montagem de treinos/exercícios. Além disso, identificaram-se as rotinas de cadastro de fornecedores, controle de equipamentos, manutenções e a necessidade de controle de contas a pagar.
 
- **[Clique aqui para acessar o Documento Completo do Levantamento na pasta (`levantamento/Levantamento.md`)](./levantamento/Levantamento.md )**
+ **[Clique aqui para acessar o Documento Completo do Levantamento na pasta(`levantamento/Levantamento.md`)](./levantamento/Levantamento.md )
 
 ---
 
@@ -132,7 +132,7 @@
 
 O Diagrama Entidade-Relacionamento (DER) conceitual do sistema foi desenvolvido utilizando a ferramenta **brModelo**.
 
- **[Clique aqui para abrir o PDF do DER Conceitual (`DER_Conceitual.pdf`)](DER_Conceitual.pdf)**
+ **[Clique aqui para abrir o PDF do DER Conceitual (`docs/DER_Conceitual.pdf`)](DER_Conceitual.pdf)**
 
 ### ***Revisão do DER conceitual – Entrega 1***
 
