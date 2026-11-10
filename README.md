@@ -5,8 +5,8 @@
 
 - **DER conceitual revisado:** [DER_Conceitual.pdf](docs/diagramas/DER_Conceitual.pdf)
 - **Modelo lógico revisado:** [Modelo_Logico.png](docs/diagramas/Modelo_Logico.png)
-- **Dicionário de Dados v2.0 (HTML):** [abrir dicionário](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
-- **Levantamento:** [abrir levantamento](levantamento/Levantamento.md)
+- **Dicionário de Dados v2.0 (HTML):** [Abrir dicionário](docs/01-Dicionario-de-Dados/Dicionario-de-Dados-Argos-Fitness.html)
+- **Levantamento:** [Abrir levantamento](levantamento/Levantamento.md)
 
 ---
 
