@@ -332,7 +332,7 @@ Os artefatos finais estão organizados na estrutura de arquivos do repositório:
 
 ---
 
-## 6. Uso de Inteligência Artificial
+
 
 ## 6. Uso de Inteligência Artificial
 
